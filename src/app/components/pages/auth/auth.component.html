@@ -1,0 +1,12 @@
+<div class="auth" [ngClass]="{
+    'auth--register': authService.AuthType == EAuthType.REGISTER
+}">
+    <div class="auth__form">
+        <app-auth-login *ngIf="authService.AuthType == EAuthType.LOGIN" />
+        <app-auth-register *ngIf="authService.AuthType == EAuthType.REGISTER" />
+    </div>
+    <div class="auth__screen">
+        <h1 class="auth__title">ShipmentCRM</h1>
+        <p class="auth__subtitle">{{authService.AuthType == EAuthType.REGISTER ? 'Регистрация' : 'Авторизация' }}</p>
+    </div>
+</div>

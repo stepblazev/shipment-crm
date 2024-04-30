@@ -1,0 +1,32 @@
+.auth {
+    @apply min-h-[100vh] flex flex-row items-stretch;
+    
+    &--register {
+        @apply flex-row-reverse;
+    }
+    
+    &--register &__title,
+    &--register &__subtitle {
+        @apply text-right;
+    }
+    
+    &__form {
+        @apply px-[160px] bg-white basis-[50%] shrink-0 pt-[120px];
+    }
+    
+    &__screen {
+        @apply flex-grow p-4 bg-dark;
+        background-image: url(../../../../assets/images/background.jpg);
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+    }
+    
+    &__title {
+        @apply text-white text-header;
+    }
+    
+    &__subtitle {
+        @apply mt-2 text-white text-subheader;
+    }
+}

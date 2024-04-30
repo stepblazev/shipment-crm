@@ -3,25 +3,25 @@ h2,
 h3,
 h4,
 h5 {
-    font-style: normal;
-    font-weight: 700;
+  font-style: normal;
+  font-weight: 700;
 }
 
 h1 {
-    font-size: 100px;
+  font-size: 100px;
 }
 
 h2 {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 h3 {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 h4 {
-    font-size: 24px;
-    line-height: 27.6px;
+  font-size: 24px;
+  line-height: 27.6px;
 }
 
 h5 {
@@ -30,5 +30,33 @@ h5 {
 }
 
 svg {
-	@apply w-full h-full;
+  @apply w-full h-full;
+}
+
+.btn {
+}
+
+.control {
+  @apply relative;
+
+  &__caption {
+    @apply text-dark text-body-1;
+  }
+
+  &__input {
+    @apply mt-1 p-2 text-dark w-full border-light border-[1px] border-b-[3px] bg-white outline-none transition-all;
+
+    &:not(:focus):hover {
+      @apply bg-light;
+    }
+  }
+
+  &::after {
+    @apply w-0 h-[3px] absolute bottom-0 left-[50%] translate-x-[-50%] bg-primary transition-all duration-300;
+    content: "";
+  }
+
+  &:focus-within::after {
+    @apply w-full;
+  }
 }

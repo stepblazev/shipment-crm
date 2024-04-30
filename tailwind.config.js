@@ -17,6 +17,13 @@ export default {
             },
         },
         fontSize: {
+            "header": ["38px", {
+                lineHeight: "33.6px",
+                fontWeight: "700"
+            }],
+
+            "subheader": ["24px", "31.2px"],
+
             "body-1": ["17px", "22.5px"],
             "body-2": ["14px", "20px"],
             "body-3": ["12px", {

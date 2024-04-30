@@ -1,0 +1,15 @@
+<form action="#">
+    <h3 class="text-[1.5rem]">Вход в учетную запись</h3>
+    
+    <div class="mt-8 control">
+        <p class="control__caption">Email</p>
+        <input class="control__input" type="email" name="EMAIL" placeholder="example@mail.ru" />
+    </div>
+    <div class="mt-4 control">
+        <p class="control__caption">Пароль</p>
+        <input class="control__input" type="password" name="PASSWORD" placeholder="********" />
+    </div>
+    
+    <button class="mt-8 bg-primary text-white w-full p-4 text-button hover:brightness-125" type="submit">Войти</button>
+    <p class="mt-4 text-center text-body-2">Нет учетной записи? <a href="javascript:void()" (click)="moveToRegister()" class="text-primary font-bold">Зарегестрироваться</a></p>
+</form>
