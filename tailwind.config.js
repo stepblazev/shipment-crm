@@ -42,8 +42,13 @@ export default {
             white: "#FFFFFF",
 
             primary: "#5599FF",
+            darkprimary: "#294FCC",
+            
             success: "#1BCD54",
-            fail: "#D21545",
+            darksuccess: "#128035",
+            
+            error: "#D21545",
+            darkerror: "#850828",
 
             dark: "#222831",
             gray: "#393E46",

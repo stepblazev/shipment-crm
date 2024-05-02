@@ -34,17 +34,98 @@ svg {
 }
 
 .btn {
+    @apply bg-primary text-white w-full p-4 text-button transition duration-300;
+    
+    &:hover {
+        @apply bg-darkprimary;
+    }
+    
+    &:active {
+        @apply bg-primary;
+    }
+        
+    &--success {
+        @apply bg-success;
+        
+        &:hover {
+            @apply bg-darksuccess;
+        }
+        
+        &:active {
+            @apply bg-success;
+        }
+    }
+        
+    &--error {
+        @apply bg-error;
+        
+        &:hover {
+            @apply bg-darkerror;
+        }
+        
+        &:active {
+            @apply bg-error;
+        }
+    }
+    
+    &:disabled {
+        @apply border-light bg-light text-white;
+    }
+}
+
+.btn-alt {
+    @apply bg-white text-dark w-full p-4 text-button border-[1px] border-dark transition duration-300;
+    
+    &:hover {
+        @apply border-light bg-light;
+    }
+    
+    &:active {
+        @apply bg-dark text-white;
+    }
+    
+    &--success {
+        @apply border-success text-success;
+        
+        &:hover {
+            @apply border-darksuccess text-darksuccess;
+        }
+        
+        &:active {
+            @apply border-success text-success bg-white;
+        }
+    }
+        
+    &--error {
+        @apply border-error text-error;
+        
+        &:hover {
+            @apply border-darkerror text-darkerror;
+        }
+        
+        &:active {
+            @apply border-error text-error bg-white;
+        }
+    }
+    
+    &:disabled {
+        @apply border-light bg-light text-white;
+    }
 }
 
 .control {
   @apply relative;
 
   &__caption {
-    @apply text-dark text-body-1;
+    @apply text-dark text-body-2 transition;
+  }
+
+  &__error {
+    @apply hidden text-error text-body-3 text-right absolute top-full mt-1 right-0;
   }
 
   &__input {
-    @apply mt-1 p-2 text-dark w-full border-light border-[1px] border-b-[3px] bg-white outline-none transition-all;
+    @apply mt-1 p-2 text-dark w-full border-light border-[1px] border-b-[3px] bg-white outline-none transition;
 
     &:not(:focus):hover {
       @apply bg-light;
@@ -58,5 +139,9 @@ svg {
 
   &:focus-within::after {
     @apply w-full;
+  }
+
+  &:focus-within &__caption {
+    @apply text-primary;
   }
 }

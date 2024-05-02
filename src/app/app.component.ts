@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UserService } from './modules/user/user.service';
 
 @Component({
   standalone: true,
@@ -8,6 +9,12 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'shipment-crm';
+  
+  constructor(private userService: UserService) {}
+  
+  public ngOnInit(): void {
+      this.userService.loadUser();
+  }
 }

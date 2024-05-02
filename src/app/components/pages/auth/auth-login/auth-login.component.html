@@ -1,15 +1,25 @@
-<form action="#">
-    <h3 class="text-[1.5rem]">Вход в учетную запись</h3>
-    
-    <div class="mt-8 control">
-        <p class="control__caption">Email</p>
-        <input class="control__input" type="email" name="EMAIL" placeholder="example@mail.ru" />
-    </div>
-    <div class="mt-4 control">
-        <p class="control__caption">Пароль</p>
-        <input class="control__input" type="password" name="PASSWORD" placeholder="********" />
-    </div>
-    
-    <button class="mt-8 bg-primary text-white w-full p-4 text-button hover:brightness-125" type="submit">Войти</button>
-    <p class="mt-4 text-center text-body-2">Нет учетной записи? <a href="javascript:void()" (click)="moveToRegister()" class="text-primary font-bold">Зарегестрироваться</a></p>
-</form>
+<div class="login">
+    <form action="#" (ngSubmit)="login($event)" class="login__form">
+        <h3 class="login__title">Вход в учетную запись</h3>
+
+        <div class="mt-8 control">
+            <span class="control__caption">Email</span>
+            <input class="control__input" type="email" [(ngModel)]="email" name="EMAIL" placeholder="example@mail.ru" required />
+            <span class="control__error">*Обязательное поле</span>
+        </div>
+        <div class="mt-4 control">
+            <span class="control__caption">Пароль</span>
+            <input class="control__input" type="password" [(ngModel)]="password" name="PASSWORD" placeholder="********" required />
+            <span class="control__error">*Обязательное поле</span>
+        </div>
+
+        <a href="javascript:void(0)" class="login__forgot">Забыли пароль?</a>
+        
+        <button class="mt-6 btn" type="submit">Войти</button>
+        
+        <p class="login__register">
+            Нет учетной записи?
+            <a href="javascript:void(0)" (click)="moveToRegister()">Зарегестрироваться</a>
+        </p>
+    </form>
+</div>

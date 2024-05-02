@@ -1,24 +1,35 @@
-<form action="#">
-    <h3 class="text-[1.5rem]">Регистрация учетной записи</h3>
-    
-    <div class="mt-8 control">
-        <p class="control__caption">Имя</p>
-        <input class="control__input" type="text" name="NAME" placeholder="John" />
-    </div>
-    <div class="mt-4 control">
-        <p class="control__caption">Email</p>
-        <input class="control__input" type="email" name="EMAIL" placeholder="example@mail.ru" />
-    </div>
-    <div class="mt-4 control">
-        <p class="control__caption">Пароль</p>
-        <input class="control__input" type="password" name="PASSWORD" placeholder="********" />
-    </div>
-    <div class="mt-4 control">
-        <p class="control__caption">Повторите пароль</p>
-        <input class="control__input" type="password" name="PASSWORD_REPEAT" placeholder="********" />
-    </div>
-    
-    <button class="mt-8 bg-primary text-white w-full p-4 text-button hover:brightness-125"
-        type="submit">Зарегестрироваться</button>
-    <p class="text-center mt-4 text-body-2">Уже есть учетная запись? <a href="javascript:void()" class="text-primary font-bold" (click)="moveToRegister()">Войти</a></p>
-</form>
+<div class="register">
+    <form action="#" (ngSubmit)="register($event)" class="register__form">
+        <h3 class="register__title">Регистрация учетной записи</h3>
+
+        <div class="mt-8 flex gap-4">
+            <div class="control">
+                <span class="control__caption">Имя</span>
+                <input class="control__input" type="text" [(ngModel)]="firstName" name="FIRST_NAME" placeholder="John" required />
+            </div>
+            <div class="control">
+                <span class="control__caption">Фамилия</span>
+                <input class="control__input" type="text" [(ngModel)]="lastName" name="LAST_NAME" placeholder="Doe" required />
+            </div>
+        </div>
+        <div class="mt-4 control">
+            <span class="control__caption">Email</span>
+            <input class="control__input" type="email" [(ngModel)]="email" name="EMAIL" placeholder="example@mail.ru" required />
+        </div>
+        <div class="mt-4 control">
+            <span class="control__caption">Пароль</span>
+            <input class="control__input" type="password" [(ngModel)]="password" name="PASSWORD" placeholder="********" required />
+        </div>
+        <div class="mt-4 control">
+            <span class="control__caption">Повторите пароль</span>
+            <input class="control__input" type="password" [(ngModel)]="passwordRepeat" name="PASSWORD_REPEAT" placeholder="********" required />
+        </div>
+
+        <button class="mt-8 btn-alt" type="submit">Зарегестрироваться</button>
+
+        <p class="register__login">
+            Уже есть учетная запись?
+            <a href="javascript:void(0)" (click)="moveToLogin()">Войти</a>
+        </p>
+    </form>
+</div>

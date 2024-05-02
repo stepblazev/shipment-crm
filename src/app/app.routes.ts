@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './modules/auth/auth.guard';
+import { AuthGuard, NotAuthGuard } from './modules/auth/auth.guard';
 import { HomeComponent } from './components/pages/home/home.component';
 import { FleetComponent } from './components/pages/fleet/fleet.component';
 import { VehiclesComponent } from './components/pages/vehicles/vehicles.component';
@@ -17,6 +17,7 @@ export const routes: Routes = [
     path: 'auth',
     title: 'Авторизация',
     component: AuthComponent,
+    canActivate: [NotAuthGuard],
   },
   {
     path: 'home',
