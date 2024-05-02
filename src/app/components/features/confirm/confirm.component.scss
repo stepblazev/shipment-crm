@@ -1,0 +1,19 @@
+.confirm {
+  @apply max-w-[600px];
+
+  &__title {
+    @apply text-[1.5rem];
+  }
+
+  &__message {
+    @apply mt-4 text-body-1;
+  }
+
+  &__controls {
+    @apply mt-8 flex justify-end;
+    
+    button {
+        @apply py-2 px-4 w-auto;
+    }
+  }
+}

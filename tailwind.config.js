@@ -50,6 +50,7 @@ export default {
             error: "#D21545",
             darkerror: "#850828",
 
+            black: "#151821",
             dark: "#222831",
             gray: "#393E46",
             light: "#EEEEEE",

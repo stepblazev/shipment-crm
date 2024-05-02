@@ -1,3 +1,8 @@
-<main class="main">
-    <router-outlet />
-</main>
+<div class="flex items-stretch">
+    <app-main-menu *ngIf="!isActiveRoute('/auth')" />
+    <main class="flex-grow">
+        <router-outlet />
+    </main>
+</div>
+
+<app-confirm />

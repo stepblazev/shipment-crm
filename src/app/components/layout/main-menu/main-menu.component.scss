@@ -1,0 +1,49 @@
+.menu {
+  @apply sticky top-0 min-h-[100vh] min-w-[300px] bg-black shadow-dark shadow-lg;
+
+  &__nav {
+  }
+
+  &__group {
+  }
+
+  &__group:not(:last-child) {
+    @apply mb-8;
+  }
+
+  &__item {
+  }
+
+  &__link {
+    @apply relative py-4 pl-4 pr-2 flex items-center gap-4 text-light font-medium text-body-1 transition;
+
+    svg {
+      @apply w-6 h-6 stroke-light transition;
+    }
+
+    &::before {
+      content: "";
+      @apply bg-primary h-full w-0 absolute top-0 left-0 transition-all;
+    }
+
+    &:not(&--active):hover {
+      @apply text-primary bg-dark bg-opacity-25;
+
+      svg {
+        @apply stroke-primary;
+      }
+    }
+
+    &--active {
+      @apply text-primary bg-dark bg-opacity-50 cursor-default;
+
+      svg {
+        @apply stroke-primary;
+      }
+
+      &::before {
+        @apply w-2;
+      }
+    }
+  }
+}
