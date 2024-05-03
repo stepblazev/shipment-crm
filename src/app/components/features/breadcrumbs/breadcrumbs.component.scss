@@ -1,0 +1,24 @@
+.breadcrumbs {
+    @apply flex items-center;
+    
+    &__item:not(:first-child) {
+        @apply ml-3;
+        
+        &::before {
+            content: '/';
+            @apply mr-2 text-body-2 text-light;
+        }
+    }
+
+    &__link {
+        @apply text-body-2 opacity-50 text-dark transition;
+        
+        &:hover {
+            @apply opacity-100;
+        }
+    }
+        
+    &__item:last-child &__link {
+        @apply opacity-100 font-semibold cursor-default;
+    }
+}

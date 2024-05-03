@@ -1,7 +1,12 @@
-<div *ngIf="userService.currentUser" class="h-[100vh] flex flex-col gap-4 justify-center items-center">
-    <img src="{{userService.currentUser.avatar}}" alt="" class="h-[100px]">
-    <p><b>EMAIL: </b>{{userService.currentUser.email}}</p>
-    <p><b>ИМЯ: </b>{{userService.currentUser.first_name}}</p>
-    <p><b>ФАМИЛИЯ: </b>{{userService.currentUser.last_name}}</p>
-    <button class="max-w-[300px] btn-alt btn-alt--error" (click)="homeLogout()">Выйти из учетной записи</button>
+<app-header />
+<div class="p-12">
+  <h4>Список интерактивных страниц</h4>
+  <ul class="mt-6 ml-4 list-disc">
+    <li>
+      <a routerLink="/fleet" class="text-dark hover:text-primary font-semibold">Страница "Обзор"</a>
+    </li>
+    <li>
+        <a routerLink="/drivers" class="text-dark hover:text-primary font-semibold">Страница "Водители"</a>
+    </li>
+  </ul>
 </div>

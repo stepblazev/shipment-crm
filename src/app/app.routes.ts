@@ -11,6 +11,9 @@ import { AssetsNewComponent } from './components/pages/assets/assets-new/assets-
 import { ConformityOverviewComponent } from './components/pages/conformity/conformity-overview/conformity-overview.component';
 import { MaintenanceComponent } from './components/pages/maintenance/maintenance.component';
 import { AuthComponent } from './components/pages/auth/auth.component';
+import { ConformityLogsComponent } from './components/pages/conformity/conformity-logs/conformity-logs.component';
+import { DocumentsComponent } from './components/pages/documents/documents.component';
+import { ReportsComponent } from './components/pages/reports/reports.component';
 
 export const routes: Routes = [
   {
@@ -20,11 +23,12 @@ export const routes: Routes = [
     canActivate: [NotAuthGuard],
   },
   {
-    path: 'home',
+    path: '',
     title: 'Главная страница',
     component: HomeComponent,
     canActivate: [AuthGuard],
   },
+
   {
     path: 'fleet',
     title: 'Обзор',
@@ -63,7 +67,11 @@ export const routes: Routes = [
     component: AssetsComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'new', title: 'Новый груз', component: AssetsNewComponent },
+      {
+        path: 'new',
+        title: 'Новый груз',
+        component: AssetsNewComponent,
+      },
     ],
   },
   {
@@ -75,7 +83,11 @@ export const routes: Routes = [
         title: 'Сводка',
         component: ConformityOverviewComponent,
       },
-      { path: 'logs', title: 'Журнал', component: ConformityOverviewComponent },
+      {
+        path: 'logs',
+        title: 'Журнал',
+        component: ConformityLogsComponent,
+      },
     ],
   },
   {
@@ -84,7 +96,18 @@ export const routes: Routes = [
     component: MaintenanceComponent,
     canActivate: [AuthGuard],
   },
-
-  // Редирект с невалидного URL на /home
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'documents',
+    title: 'Документы',
+    component: DocumentsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'reports',
+    title: 'Отчеты',
+    component: ReportsComponent,
+    canActivate: [AuthGuard],
+  },
+  // Редирект с невалидного URL на /
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

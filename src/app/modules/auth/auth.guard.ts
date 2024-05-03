@@ -21,7 +21,7 @@ export const NotAuthGuard: CanActivateFn = () => {
 
   // если юзер авторизован, редирект на главную страницу
   if (userService.isAuthorized) {
-    router.navigate(['home']);
+    router.navigate(['']);
     return false;
   }
 

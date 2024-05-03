@@ -3,6 +3,7 @@ import { AuthService } from '../../../../modules/auth/auth.service';
 import { EAuthType } from '../../../../modules/auth/models';
 import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/app/modules/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ export class AuthRegisterComponent {
   public passwordRepeat: string = '';
 
   constructor(
+    private readonly router: Router,
     private readonly authService: AuthService,
     private readonly userService: UserService
   ) {}
@@ -39,6 +41,8 @@ export class AuthRegisterComponent {
       first_name: this.firstName,
       last_name: this.lastName,
     });
+    
+    this.router.navigate(['home']);
   }
 
   public moveToLogin() {

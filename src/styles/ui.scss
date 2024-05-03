@@ -34,7 +34,7 @@ svg {
 }
 
 .btn {
-    @apply bg-primary text-white w-full p-4 text-button transition duration-300;
+    @apply bg-primary text-white px-4 py-2 text-button transition duration-300;
     
     &:hover {
         @apply bg-darkprimary;
@@ -74,7 +74,7 @@ svg {
 }
 
 .btn-alt {
-    @apply bg-white text-dark w-full p-4 text-button border-[1px] border-dark transition duration-300;
+    @apply bg-white text-dark px-4 py-2 text-button border-[1px] border-dark transition duration-300;
     
     &:hover {
         @apply border-light bg-light;

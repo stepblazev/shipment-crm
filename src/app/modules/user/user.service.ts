@@ -23,8 +23,6 @@ export class UserService {
 
     this.isAuthorized = true;
     this.currentUser = new UserModel(userProps);
-
-    this.router.navigate(['home']);
   }
 
   public loadUser(): void {
@@ -42,7 +40,5 @@ export class UserService {
 
     this.localStorageService.removeItem(LOCAL_STORAGE_KEYS.USER);
     this.localStorageService.removeItem(LOCAL_STORAGE_KEYS.AUTHORIZED);
-
-    this.router.navigate(['auth']);
   }
 }

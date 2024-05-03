@@ -4,7 +4,7 @@ import { IMainMenuLink } from './models';
 export const mainMenuLinks: IMainMenuLink[][] = [
   [
     {
-      href: '/home',
+      href: '/',
       name: 'Главная',
       description: 'Главная страница CRM',
       spriteId: 'home',
@@ -49,13 +49,25 @@ export const mainMenuLinks: IMainMenuLink[][] = [
       description: 'Страница журнала событий',
       spriteId: 'logs',
     },
-  ],
-  [
     {
       href: '/maintenance',
       name: 'Обслуживание',
       description: 'Страница обслуживания транспортных средств',
       spriteId: 'maintenance',
+    },
+  ],
+  [
+    {
+      href: '/documents',
+      name: 'Документы',
+      description: 'Страница просмотра и добавления документов',
+      spriteId: 'documents',
+    },
+    {
+      href: '/reports',
+      name: 'Отчеты',
+      description: 'Страница просмотра и добавления отчетов',
+      spriteId: 'reports',
     },
   ],
 ];

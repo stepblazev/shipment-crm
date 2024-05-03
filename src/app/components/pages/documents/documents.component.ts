@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../layout/header/header.component';
 
 @Component({
-  selector: 'app-vehicles',
+  selector: 'app-documents',
   standalone: true,
   imports: [HeaderComponent],
-  templateUrl: './vehicles.component.html',
-  styleUrl: './vehicles.component.scss'
+  templateUrl: './documents.component.html',
+  styleUrl: './documents.component.scss'
 })
-export class VehiclesComponent {
+export class DocumentsComponent {
 
 }

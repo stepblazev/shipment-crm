@@ -1,5 +1,5 @@
 .menu {
-  @apply sticky top-0 min-h-[100vh] min-w-[300px] bg-black shadow-dark shadow-lg;
+  @apply sticky top-0 z-30 min-h-[100vh] min-w-[240px] bg-black shadow-dark shadow-lg;
 
   &__nav {
   }

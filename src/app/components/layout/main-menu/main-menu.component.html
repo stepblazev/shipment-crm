@@ -4,7 +4,7 @@
             <li *ngFor="let link of group" class="menu__item">
                 <a [routerLink]="link.href" class="menu__link" [ngClass]="{ 'menu__link--active': isActiveRoute(link.href) }" [title]="link.description">
                     <svg *ngIf="link.spriteId" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <use [attr.xlink:href]="'../../../../assets/icons/sprites.svg#'+link.spriteId"></use>
+                        <use [attr.xlink:href]="'assets/icons/main-menu.sprites.svg#'+link.spriteId"></use>
                     </svg>
                     {{ link.name }}
                 </a>

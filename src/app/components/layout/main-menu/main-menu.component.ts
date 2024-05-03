@@ -15,7 +15,7 @@ export class MainMenuComponent {
   public links: IMainMenuLink[][] = mainMenuLinks;
 
   constructor(private router: Router) {}
-  
+
   public isActiveRoute(path: string): boolean {
     const options: IsActiveMatchOptions = {
       paths: 'exact',
