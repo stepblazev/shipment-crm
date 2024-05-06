@@ -9,11 +9,11 @@
     
     &--register &__title,
     &--register &__subtitle {
-        @apply text-right;
+        @apply text-right justify-end;
     }
     
     &--register &__screen {
-        border-radius: 0 2rem 2rem 0;
+        border-radius: 0 1rem 1rem 0;
         @apply max-laptop:rounded-none;
     }
     
@@ -23,7 +23,7 @@
     }
     
     &__screen {
-        border-radius: 2rem 0 0 2rem;
+        border-radius: 1rem 0 0 1rem;
         background-image: url(../../../../assets/images/background.jpg);
         background-size: cover;
         background-position: center;
@@ -34,12 +34,16 @@
     }
     
     &__title {
-        @apply text-white text-header leading-none;
-        @apply max-laptop:text-[1.5rem];
+        @apply flex justify-start items-center gap-4;
+        
+        span {
+            @apply text-white text-[72px] leading-none;
+            @apply max-laptop:text-[1.5rem];
+        }
     }
     
     &__subtitle {
-        @apply mt-4 text-white text-subheader leading-none;
+        @apply mt-2 text-white text-subheader leading-none;
         @apply max-laptop:mt-2 max-laptop:text-[1rem];
     }
 }

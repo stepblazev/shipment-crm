@@ -1,12 +1,9 @@
 <header
-  class="bg-white border-light h-[56px] w-full flex justify-end items-center sticky top-0 shadow-dark drop-shadow-lg"
+  class="bg-white border-light h-[56px] w-full flex justify-end items-center sticky top-0 border-b-[1px] z-30"
 >
-  <div class="flex-grow">
-  </div>
-
   <div
     class="px-4 relative h-full flex items-center cursor-pointer transition hover:bg-light"
-    [ngClass]="{ 'bg-light': isMenuOpened }"
+    [ngClass]="{ 'bg-light drop-shadow-md': isMenuOpened }"
     (click)="isMenuOpened = !isMenuOpened"
   >
     <div
@@ -19,20 +16,20 @@
         alt=""
       />
     </div>
-    <div class="ml-4">
-      <div class="text-body-1">
+    <div class="ml-4 select-none">
+      <div class="text-body-1 whitespace-nowrap">
         {{ userService.currentUser?.first_name }}&nbsp;{{
           userService.currentUser?.last_name
         }}
       </div>
-      <div class="text-body-3 text-gray opacity-50">
+      <div class="text-body-3 whitespace-nowrap text-gray opacity-50">
         {{ userService.currentUser?.email }}
       </div>
     </div>
 
     <div
       *ngIf="isMenuOpened"
-      class="absolute top-full left-0 max-w-full min-w-full"
+      class="absolute top-full left-0 max-w-full min-w-full rounded-b overflow-hidden"
       (click)="$event.stopPropagation()"
     >
       <div class="bg-light p-4 flex flex-col justify-end cursor-default">

@@ -24,7 +24,7 @@ export default {
 
             "subheader": ["24px", "31.2px"],
 
-            "body-1": ["17px", "22.5px"],
+            "body-1": ["16px", "22.5px"],
             "body-2": ["14px", "20px"],
             "body-3": ["12px", {
                 lineHeight: "16.8px", fontWeight: 400

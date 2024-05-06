@@ -34,7 +34,7 @@ svg {
 }
 
 .btn {
-    @apply bg-primary text-white px-4 py-2 text-button transition duration-300;
+    @apply rounded bg-primary text-white px-4 py-2 text-button transition duration-300;
     
     &:hover {
         @apply bg-darkprimary;
@@ -74,14 +74,14 @@ svg {
 }
 
 .btn-alt {
-    @apply bg-white text-dark px-4 py-2 text-button border-[1px] border-dark transition duration-300;
+    @apply rounded bg-white text-dark px-4 py-2 text-button border-[1px] border-dark transition duration-300;
     
     &:hover {
         @apply border-light bg-light;
     }
     
     &:active {
-        @apply bg-dark text-white;
+        @apply border-dark bg-dark text-white;
     }
     
     &--success {
@@ -120,10 +120,6 @@ svg {
     @apply text-dark text-body-2 transition;
   }
 
-  &__error {
-    @apply hidden text-error text-body-3 text-right absolute top-full mt-1 right-0;
-  }
-
   &__input {
     @apply mt-1 p-2 text-dark w-full border-light border-[1px] border-b-[3px] bg-white outline-none transition;
 
@@ -141,7 +137,19 @@ svg {
     @apply w-full;
   }
 
-  &:focus-within &__caption {
+  &:not(&--error):focus-within &__caption {
     @apply text-primary;
+  }  
+  
+  &__error {
+    @apply text-error text-body-3 text-right absolute top-full mt-1 right-0;
+  }
+  
+  &--error &__caption {
+    @apply text-error;
+  }
+  
+  &--error::after {
+    @apply bg-error;
   }
 }
