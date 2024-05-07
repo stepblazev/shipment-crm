@@ -13,7 +13,7 @@
     }
     
     span {
-      @apply hidden;
+      @apply w-0 opacity-0 mr-0;
     }
     
     &:hover svg {
@@ -33,14 +33,14 @@
   }
 
   &__logo {
-    @apply pt-4 px-4 flex items-center gap-2;
+    @apply pt-4 px-4 flex items-center transition-all duration-[400ms];
 
     svg {
-      @apply w-8 h-8 fill-darkprimary transition shrink-0;
+      @apply w-8 h-8 fill-darkprimary transition-all duration-[400ms] shrink-0;
     }
 
     span {
-      @apply font-bold text-white text-[32px] leading-none transition;
+      @apply mr-2 font-bold text-white text-[32px] leading-none overflow-hidden w-[78px] transition-all duration-[400ms];
     }
 
     &:hover {

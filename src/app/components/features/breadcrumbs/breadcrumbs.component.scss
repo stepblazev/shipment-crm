@@ -1,5 +1,5 @@
 .breadcrumbs {
-    @apply flex items-center;
+    @apply flex items-center select-none;
     
     &__item:not(:first-child) {
         @apply ml-3;
@@ -11,7 +11,7 @@
     }
 
     &__link {
-        @apply text-body-2 opacity-50 text-dark transition;
+        @apply text-body-1 opacity-50 text-dark transition;
         
         &:hover {
             @apply opacity-100;

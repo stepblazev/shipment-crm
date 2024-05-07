@@ -14,6 +14,9 @@ import { AuthComponent } from './components/pages/auth/auth.component';
 import { ConformityLogsComponent } from './components/pages/conformity/conformity-logs/conformity-logs.component';
 import { DocumentsComponent } from './components/pages/documents/documents.component';
 import { ReportsComponent } from './components/pages/reports/reports.component';
+import { VehiclesListComponent } from './components/pages/vehicles/vehicles-list/vehicles-list.component';
+import { DriversListComponent } from './components/pages/drivers/drivers-list/drivers-list.component';
+import { AssetsListComponent } from './components/pages/assets/assets-list/assets-list.component';
 
 export const routes: Routes = [
   {
@@ -37,10 +40,15 @@ export const routes: Routes = [
   },
   {
     path: 'vehicles',
-    title: 'Список транспорта',
+    title: 'Транспорт',
     component: VehiclesComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        title: 'Список транспорта',
+        component: VehiclesListComponent,
+      },
       {
         path: 'new',
         title: 'Новый транспорт',
@@ -50,10 +58,15 @@ export const routes: Routes = [
   },
   {
     path: 'drivers',
-    title: 'Список водителей',
+    title: 'Водители',
     component: DriversComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        title: 'Список водителей',
+        component: DriversListComponent,
+      },
       {
         path: 'new',
         title: 'Новый водитель',
@@ -63,10 +76,15 @@ export const routes: Routes = [
   },
   {
     path: 'assets',
-    title: 'Список грузов',
+    title: 'Грузы',
     component: AssetsComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        title: 'Список грузов',
+        component: AssetsListComponent,
+      },
       {
         path: 'new',
         title: 'Новый груз',

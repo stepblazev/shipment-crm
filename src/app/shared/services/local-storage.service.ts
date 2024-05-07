@@ -15,10 +15,6 @@ export class LocalStorageService {
         return data as T;
     }
 
-    public removeItem(key: string) {
-        return localStorage.removeItem(key);
-    }
-
     public setItem(key: string, value: any) {
         let _value: string;
 
@@ -29,5 +25,13 @@ export class LocalStorageService {
         }
 
         localStorage.setItem(key, _value);
+    }
+    
+    public removeItem(key: string) {
+        return localStorage.removeItem(key);
+    }
+    
+    public exists(key: string) {
+        return key in localStorage;
     }
 }

@@ -21,10 +21,11 @@ export class MainMenuComponent {
     private readonly router: Router,
     private readonly localStorageService: LocalStorageService
   ) {
-    this.isWide =
-      Boolean(
-        this.localStorageService.getItem<number>(LOCAL_STORAGE_KEYS.MENU)
-      ) ?? true;
+    if (this.localStorageService.exists(LOCAL_STORAGE_KEYS.MENU)) {
+        this.isWide = Boolean(this.localStorageService.getItem<number>(LOCAL_STORAGE_KEYS.MENU));
+    } else {
+        this.isWide = true;
+    }
   }
 
   public setIsWide(state: boolean): void {
@@ -33,10 +34,12 @@ export class MainMenuComponent {
   }
 
   public isActiveRoute(path: string): boolean {
+    if (path.length > 1 && location.pathname.startsWith(path)) return true;
+    
     const options: IsActiveMatchOptions = {
       paths: 'exact',
-      queryParams: 'ignored',
       fragment: 'ignored',
+      queryParams: 'ignored',
       matrixParams: 'ignored',
     };
 

@@ -1,6 +1,6 @@
 import { IMainMenuLink } from './models';
 
-// Вложенные массивы определяют группы ссылок (группы разделены чертой)
+// Вложенные массивы определяют группы ссылок
 export const mainMenuLinks: IMainMenuLink[][] = [
   [
     {

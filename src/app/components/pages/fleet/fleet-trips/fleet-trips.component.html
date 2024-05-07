@@ -1,0 +1,36 @@
+<div class="max-h-full flex flex-col items-stretch">
+    <div class="p-4">
+        <div class="control">
+            <input type="search" class="control__input" placeholder="ID, транспорт, водитель..." />
+        </div>
+    </div>
+    <div class="flex-grow overflow-scroll">
+        <div *ngFor="let trip of trips" class="p-4 border-b-[1px] border-light">
+            <div>
+                <span class="font-bold text-body-1">TRIP{{trip.id}}</span>
+                <span class="ml-4 font-normal text-body-2 opacity-75">{{trip.vehicle}}</span>
+            </div>
+            <div class="mt-1">
+                <span class="font-semibold text-body-2 leading-none">{{trip.driver}}</span>
+            </div>
+            <div class="mt-2">
+                <p class="text-gray opacity-75 text-body-3 leading-none flex items-center gap-1">
+                    <svg class="w-4 h-4 stroke-gray opacity-75" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <use xlink:href="assets/icons/common.sprites.svg#globe"></use>
+                    </svg>
+                    {{trip.start_location}}
+                </p>
+                <p class="mt-2 text-gray opacity-75 text-body-3 leading-none flex items-center gap-1">
+                    <svg class="w-4 h-4 stroke-gray opacity-75" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <use xlink:href="assets/icons/common.sprites.svg#location"></use>
+                    </svg>
+                    {{trip.destination}}
+                </p>
+            </div>
+            <div class="mt-2">
+                <span class="text-body-3 leading-none text-gray opacity-50">{{trip.distance}} КМ</span>
+                <span class="ml-2 text-body-3 leading-none text-gray opacity-50">{{trip.vehicle_number}}</span>
+            </div>
+        </div>
+    </div>
+</div>

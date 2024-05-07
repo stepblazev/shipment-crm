@@ -4,4 +4,9 @@
       {{ breadcrumb.caption }}
     </a>
   </li>
+  <li *ngIf="current" class="breadcrumbs__item">
+    <span class="breadcrumbs__link">
+      {{ current.caption }}
+    </span>
+  </li>
 </ul>

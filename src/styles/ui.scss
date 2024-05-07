@@ -34,37 +34,42 @@ svg {
 }
 
 .btn {
-    @apply rounded bg-primary text-white px-4 py-2 text-button transition duration-300;
+    @apply rounded bg-primary border-[1px] border-primary text-white px-4 py-2 text-button transition duration-300;
+    @apply flex items-center justify-center gap-2;
+    
+    svg {
+        @apply ml-[-0.5rem] h-5 w-5 stroke-white transition;
+    }
     
     &:hover {
-        @apply bg-darkprimary;
+        @apply bg-darkprimary border-darkprimary;
     }
     
     &:active {
-        @apply bg-primary;
+        @apply bg-primary border-primary;
     }
         
     &--success {
-        @apply bg-success;
+        @apply bg-success border-success;
         
         &:hover {
-            @apply bg-darksuccess;
+            @apply bg-darksuccess border-darksuccess;
         }
         
         &:active {
-            @apply bg-success;
+            @apply bg-success border-success;
         }
     }
         
     &--error {
-        @apply bg-error;
+        @apply bg-error border-error;
         
         &:hover {
-            @apply bg-darkerror;
+            @apply bg-darkerror border-darkerror;
         }
         
         &:active {
-            @apply bg-error;
+            @apply bg-error border-error; 
         }
     }
     
@@ -75,6 +80,11 @@ svg {
 
 .btn-alt {
     @apply rounded bg-white text-dark px-4 py-2 text-button border-[1px] border-dark transition duration-300;
+    @apply flex items-center justify-center gap-2;
+    
+    svg {
+        @apply ml-[-0.5rem] h-5 w-5 stroke-dark transition;
+    }
     
     &:hover {
         @apply border-light bg-light;
@@ -82,34 +92,42 @@ svg {
     
     &:active {
         @apply border-dark bg-dark text-white;
+        svg { @apply stroke-white; }
     }
     
     &--success {
         @apply border-success text-success;
+        svg { @apply stroke-success; }
         
         &:hover {
             @apply border-darksuccess text-darksuccess;
+            svg { @apply stroke-darksuccess; }
         }
         
         &:active {
             @apply border-success text-success bg-white;
+            svg { @apply stroke-success; }
         }
     }
         
     &--error {
         @apply border-error text-error;
+        svg { @apply stroke-error; }
         
         &:hover {
             @apply border-darkerror text-darkerror;
+            svg { @apply stroke-darkerror; }
         }
         
         &:active {
             @apply border-error text-error bg-white;
+            svg { @apply stroke-error; }
         }
     }
     
     &:disabled {
         @apply border-light bg-light text-white;
+        svg { @apply stroke-white; }
     }
 }
 
@@ -117,7 +135,11 @@ svg {
   @apply relative;
 
   &__caption {
-    @apply text-dark text-body-2 transition;
+    @apply flex items-center gap-1 text-dark text-body-2 transition cursor-pointer;
+    
+    svg {
+        @apply stroke-dark w-4 h-4 transition;
+    }
   }
 
   &__input {
@@ -139,14 +161,22 @@ svg {
 
   &:not(&--error):focus-within &__caption {
     @apply text-primary;
+    
+    svg {
+        @apply stroke-primary;
+    }
   }  
-  
+
   &__error {
     @apply text-error text-body-3 text-right absolute top-full mt-1 right-0;
   }
   
   &--error &__caption {
     @apply text-error;
+    
+    svg {
+        @apply stroke-error;
+    }
   }
   
   &--error::after {

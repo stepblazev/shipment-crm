@@ -9,7 +9,7 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-@import 'styles/mat.scss'; // NOTE кастомные темы для Material
+@import 'styles/mat/palette'; // NOTE кастомные темы для Material
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker

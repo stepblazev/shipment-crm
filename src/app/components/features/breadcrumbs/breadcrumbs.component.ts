@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IBreadcrumb } from './breadcrumb.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -10,30 +11,43 @@ import { IBreadcrumb } from './breadcrumb.interface';
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss',
 })
-export class BreadcrumbsComponent {
-  public breadcrumbs: IBreadcrumb[];
+export class BreadcrumbsComponent implements OnInit, OnDestroy {
+  public breadcrumbs: IBreadcrumb[] = [];
+  public current?: IBreadcrumb;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.breadcrumbs = this.buildBreadcrumb(this.activatedRoute.root);
+  private routerSubscription?: Subscription;
+
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router
+  ) {}
+
+  ngOnInit() {
+    this.updateBreadcrumbs();
+    this.routerSubscription = this.router.events.subscribe(() => {
+      this.updateBreadcrumbs();
+    });
   }
 
-  public ngOnInit() {
-    this.breadcrumbs = this.buildBreadcrumb(this.activatedRoute.root);
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
-  private buildBreadcrumb(
-    route: ActivatedRoute,
-    url: string = '',
-    breadcrumbs: IBreadcrumb[] = []
-  ): IBreadcrumb[] {
-    let caption =
-      route.routeConfig?.data && route.routeConfig?.data['breadcrumb']
-        ? route.routeConfig.data['breadcrumb']
-        : '';
-    let path = route.routeConfig?.path ?? '';
+  private updateBreadcrumbs(): void {
+    const breadcrumbs = this.buildBreadcrumb(this.activatedRoute.root);
+    this.current = breadcrumbs.pop();
+    this.breadcrumbs = breadcrumbs;
+  }
+
+  private buildBreadcrumb(route: ActivatedRoute, url: string = '', breadcrumbs: IBreadcrumb[] = []): IBreadcrumb[] {
+    let caption: string = route.routeConfig?.title?.toString() ?? '';
+    let path: string = route.routeConfig?.path ?? '';
 
     const lastRoutePart = path.split('/').pop() || '';
     const isDynamicRoute = lastRoutePart.startsWith(':');
+
     if (isDynamicRoute && !!route.snapshot) {
       const paramName = lastRoutePart.split(':')[1];
       path = path.replace(lastRoutePart, route.snapshot.params[paramName]);
@@ -46,12 +60,15 @@ export class BreadcrumbsComponent {
       caption: caption,
       url: nextUrl,
     };
+
     const newBreadcrumbs = breadcrumb.caption
       ? [...breadcrumbs, breadcrumb]
       : [...breadcrumbs];
+
     if (route.firstChild) {
       return this.buildBreadcrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
+
     return newBreadcrumbs;
   }
 }

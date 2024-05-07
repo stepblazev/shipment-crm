@@ -1,15 +1,15 @@
-<header
-  class="bg-white border-light h-[56px] w-full flex justify-end items-center sticky top-0 border-b-[1px] z-30"
->
+<header class="bg-white border-light h-[56px] w-full flex justify-end items-center sticky top-0 border-b-[1px] z-30">
+  <div class="flex-grow pl-6">
+    <app-breadcrumbs />
+  </div>
+  
   <div
     class="px-4 relative h-full flex items-center cursor-pointer transition hover:bg-light"
-    [ngClass]="{ 'bg-light drop-shadow-md': isMenuOpened }"
-    (click)="isMenuOpened = !isMenuOpened"
+    [ngClass]="{ 'bg-light': isMenuOpened }"
+    (mouseenter)="isMenuOpened = true"
+    (mouseleave)="isMenuOpened = false"
   >
-    <div
-      *ngIf="userService.currentUser?.avatar"
-      class="w-8 h-8 overflow-hidden"
-    >
+    <div *ngIf="userService.currentUser?.avatar" class="w-8 h-8 overflow-hidden">
       <img
         src="{{ userService.currentUser?.avatar }}"
         class="w-full h-full object-cover object-center"
@@ -27,13 +27,15 @@
       </div>
     </div>
 
-    <div
-      *ngIf="isMenuOpened"
-      class="absolute top-full left-0 max-w-full min-w-full rounded-b overflow-hidden"
+    <div class="absolute top-full left-0 max-w-full min-w-full rounded-b overflow-hidden invisible opacity-0 transition-all"
+      [ngClass]="{'!visible !opacity-100': isMenuOpened}"
       (click)="$event.stopPropagation()"
     >
       <div class="bg-light p-4 flex flex-col justify-end cursor-default">
         <button type="button" class="w-full btn btn--error" (click)="logout()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use xlink:href="assets/icons/common.sprites.svg#exit-door"></use>
+          </svg>
           Выйти
         </button>
       </div>
