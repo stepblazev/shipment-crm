@@ -1,28 +1,23 @@
-<div class="h-[100vh] flex flex-col items-stretch overflow-hidden">
-  <app-header />
-  <div class="flex-grow relative bg-light">
-    
-    <div class="bg-white bg-opacity-75 backdrop-blur w-[600px] h-full drop-shadow absolute left-0 top-0">
-      <mat-tab-group fitInkBarToContent class="h-full">
-        <mat-tab label="Маршруты">
-          <app-fleet-trips class="max-h-full" />
-        </mat-tab>
-        <mat-tab label="Транспорт">
-          <app-fleet-vehicles />
-        </mat-tab>
-        <mat-tab label="Водители">
-          <app-fleet-drivers />
-        </mat-tab>
-        <mat-tab label="Грузы">
-          <app-fleet-assets />
-        </mat-tab>
-      </mat-tab-group>
+<div class="fleet">
+    <app-header />
+    <div class="fleet__content">
+        <div class="fleet__panel">
+            <mat-tab-group fitInkBarToContent disablePagination="true" mat-stretch-tabs="false" mat-align-tabs="start"
+                color="primary" class="h-full">
+                <mat-tab label="Маршруты">
+                    <app-fleet-trips class="max-h-full" />
+                </mat-tab>
+                <mat-tab label="Транспорт">
+                    <app-fleet-vehicles class="max-h-full" />
+                </mat-tab>
+                <mat-tab label="Водители">
+                    <app-fleet-drivers class="max-h-full" />
+                </mat-tab>
+                <mat-tab label="Грузы">
+                    <app-fleet-assets class="max-h-full" />
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa4fd0803cf4bc99a859fe20c4210b1c41ec583ece5a287d1b845fc4b2122f8df&amp;source=constructor" frameborder="0" class="w-full h-full"></iframe>
     </div>
-    
-    <iframe
-      src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa4fd0803cf4bc99a859fe20c4210b1c41ec583ece5a287d1b845fc4b2122f8df&amp;source=constructor"
-      frameborder="0"
-      class="w-full h-full"
-    ></iframe>
-  </div>
 </div>

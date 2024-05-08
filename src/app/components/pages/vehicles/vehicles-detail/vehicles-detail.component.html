@@ -1,0 +1,42 @@
+<div class="p-4">
+    <div *ngIf="vehicle" class="p-4 border-[1px] border-light rounded bg-white">
+        <h3 class="text-primary">{{ getFullName(vehicle) }}</h3>
+        
+        <h6 class="mt-4 font-bold text-[20px]">Общие сведения</h6>
+        <div class="mt-2">
+            <div class="w-[300px] flex justify-between"><b>ID:</b> {{vehicle.id}}</div>
+            <div class="w-[300px] flex justify-between"><b>Тип:</b> {{vehicle.type}}</div>
+            <div class="w-[300px] flex justify-between"><b>Статус:</b> {{vehicle.status}}</div>
+            <div class="w-[300px] flex justify-between"><b>Марка:</b> {{vehicle.make}}</div>
+            <div class="w-[300px] flex justify-between"><b>Модель:</b> {{vehicle.model}}</div>
+            <div class="w-[300px] flex justify-between"><b>Год выпуска:</b> {{vehicle.year}}</div>
+        </div>
+        <h6 class="mt-6 font-bold text-[20px]">Лицензия</h6>
+        <div class="mt-2">
+            <div class="w-[300px] flex justify-between"><b>Страна:</b> {{vehicle.registration.country}}</div>
+            <div class="w-[300px] flex justify-between"><b>Регион:</b> {{vehicle.registration.state}}</div>
+            <div class="w-[300px] flex justify-between"><b>Номер:</b> {{vehicle.registration.number}}</div>
+        </div>
+        
+        <div class="mt-6 flex gap-4">
+            <button type="button" routerLink="/vehicles" class="btn-alt">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#arrow-back"></use>
+                </svg>
+                Назад к списку
+            </button>
+            <button type="button" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#edit"></use>
+                </svg>
+                Редактировать
+            </button>
+            <button type="button" class="btn btn--error">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#trash-bin"></use>
+                </svg>
+                Удалить
+            </button>
+        </div>
+    </div>
+</div>

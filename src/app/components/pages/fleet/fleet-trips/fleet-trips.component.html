@@ -1,11 +1,34 @@
 <div class="max-h-full flex flex-col items-stretch">
-    <div class="p-4">
-        <div class="control">
+    <div class="p-4 flex gap-2">
+        <div class="control flex-grow">
             <input type="search" class="control__input" placeholder="ID, транспорт, водитель..." />
         </div>
+        <app-select class="w-[180px]" [options]="statusOptions" [current]="currentOption" />
     </div>
     <div class="flex-grow overflow-scroll">
-        <div *ngFor="let trip of trips" class="p-4 border-b-[1px] border-light">
+        <div *ngFor="let trip of trips" class="p-4 relative border-b-[1px] border-light">
+            
+            <span *ngIf="trip.status == 'In Progress'" class="absolute top-4 right-8" matTooltip="В процессе">
+                <svg class="w-8 h-8 stroke-warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#play"></use>
+                </svg>
+            </span>
+            <span *ngIf="trip.status == 'Waiting'" class="absolute top-4 right-8" matTooltip="Ожидает">
+                <svg class="w-8 h-8 stroke-gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#pause"></use>
+                </svg>
+            </span>
+            <span *ngIf="trip.status == 'Completed'" class="absolute top-4 right-8" matTooltip="Выполнено">
+                <svg class="w-8 h-8 stroke-success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#checked"></use>
+                </svg>
+            </span>
+            <span *ngIf="trip.status == 'Cancelled'" class="absolute top-4 right-8" matTooltip="Отменено">
+                <svg class="w-8 h-8 stroke-error" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#warning"></use>
+                </svg>
+            </span>
+            
             <div>
                 <span class="font-bold text-body-1">TRIP{{trip.id}}</span>
                 <span class="ml-4 font-normal text-body-2 opacity-75">{{trip.vehicle}}</span>

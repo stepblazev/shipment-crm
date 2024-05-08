@@ -8,7 +8,7 @@
 }
 
 .mat-mdc-row {
-  @apply h-[60px] transition text-body-1 cursor-pointer;
+  @apply h-[60px] transition text-body-1 select-none cursor-pointer;
 
   &:hover,
   &._active {

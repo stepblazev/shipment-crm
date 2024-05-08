@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { HeaderComponent } from '../../layout/header/header.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FleetTripsComponent } from './fleet-trips/fleet-trips.component';
@@ -15,9 +15,10 @@ import { FleetAssetsComponent } from './fleet-assets/fleet-assets.component';
     FleetTripsComponent,
     FleetVehiclesComponent,
     FleetDriversComponent,
-    FleetAssetsComponent
+    FleetAssetsComponent,
   ],
   templateUrl: './fleet.component.html',
-  styleUrl: './fleet.component.scss',
+  styleUrls: ['./fleet.component.scss', '../../../../styles/mat/tabs.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FleetComponent {}

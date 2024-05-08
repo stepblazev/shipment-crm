@@ -1,0 +1,12 @@
+.fleet {
+    @apply h-[100vh] flex flex-col items-stretch overflow-hidden;
+    
+    &__content {
+        @apply flex-grow relative bg-light;
+    } 
+    
+    &__panel {
+        @apply absolute left-0 top-0 h-full w-[505px] bg-white drop-shadow;
+        @apply transition ease-in-out duration-300;
+    } 
+}

@@ -47,6 +47,9 @@ export default {
             success: "#1BCD54",
             darksuccess: "#128035",
             
+            warning: "#ffc800",
+            darkwarning: "#ad8800",
+            
             error: "#D21545",
             darkerror: "#850828",
 

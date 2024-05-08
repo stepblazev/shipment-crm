@@ -17,6 +17,8 @@ import { ReportsComponent } from './components/pages/reports/reports.component';
 import { VehiclesListComponent } from './components/pages/vehicles/vehicles-list/vehicles-list.component';
 import { DriversListComponent } from './components/pages/drivers/drivers-list/drivers-list.component';
 import { AssetsListComponent } from './components/pages/assets/assets-list/assets-list.component';
+import { VehiclesDetailComponent } from './components/pages/vehicles/vehicles-detail/vehicles-detail.component';
+import { VehicleDetailResolver } from './shared/resolvers/vehicle-detail.resolver';
 
 export const routes: Routes = [
   {
@@ -53,6 +55,12 @@ export const routes: Routes = [
         path: 'new',
         title: 'Новый транспорт',
         component: VehiclesNewComponent,
+      },
+      {
+        path: ':id',
+        title: 'Транспорт детально',
+        component: VehiclesDetailComponent,
+        resolve: { vehicle: VehicleDetailResolver },
       },
     ],
   },
