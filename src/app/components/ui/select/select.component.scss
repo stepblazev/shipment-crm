@@ -42,4 +42,11 @@
         @apply text-primary cursor-default;
       }
     }
+    
+    &--disabled {
+        @apply cursor-default;
+    }
+    &--disabled &__current {
+        @apply bg-light;
+    }
   }

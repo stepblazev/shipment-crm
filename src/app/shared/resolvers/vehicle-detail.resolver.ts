@@ -1,9 +1,15 @@
+import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { IVehicle, VehiclesList } from 'src/app/models/vehicle.interface';
+import { IVehicle } from 'src/app/models/vehicles/models/vehicle.interface';
+import { VehicleService } from 'src/app/models/vehicles/vehicles.service';
 
 export const VehicleDetailResolver: ResolveFn<IVehicle | null> = (route: ActivatedRouteSnapshot) => {
+  const vehicleService = inject(VehicleService);
+  vehicleService.getList();
+  
   const vehicleId = route.paramMap.get('id');
-  return (
-    VehiclesList.find((vehicle) => vehicleId == vehicle.id.toString()) ?? null
+  return (vehicleService.vehicles.find(
+      (vehicle) => vehicleId == vehicle.id.toString()
+    ) ?? null
   );
 };

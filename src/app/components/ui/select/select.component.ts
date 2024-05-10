@@ -20,6 +20,7 @@ export interface IOption<T> {
 export class SelectComponent {
   public isOpened: boolean = false;
 
+  @Input() disabled: boolean = false;
   @Input() allowEmpty: boolean = true;
 
   @Input() options: IOption<any>[];
@@ -30,13 +31,17 @@ export class SelectComponent {
   constructor(private elRef: ElementRef) {}
 
   public setOption(option: IOption<any> | undefined) {
-    if (option == this.current) return;
+    if (option == this.current || this.disabled) return;
     this.current = option;
     this.valueChanged.emit(option);
     this.setIsOpened(false);
   }
 
   public setIsOpened(state: boolean) {
+    if (this.disabled) {
+        this.isOpened = false;
+        return;
+    }
     this.isOpened = state;
   }
 

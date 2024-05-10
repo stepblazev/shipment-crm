@@ -17,7 +17,6 @@ import { RouterLink } from '@angular/router';
 export class DriversListComponent {
     public displayedColumns: string[] = [
         'select',
-        'id',
         'first_name',
         'last_name',
         'birth_date',

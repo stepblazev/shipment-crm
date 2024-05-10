@@ -9,7 +9,7 @@
         <div *ngFor="let trip of trips" class="p-4 relative border-b-[1px] border-light">
             
             <span *ngIf="trip.status == 'In Progress'" class="absolute top-4 right-8" matTooltip="В процессе">
-                <svg class="w-8 h-8 stroke-warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <svg class="w-8 h-8 stroke-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <use xlink:href="assets/icons/common.sprites.svg#play"></use>
                 </svg>
             </span>

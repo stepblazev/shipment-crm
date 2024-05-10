@@ -1,4 +1,6 @@
-<div class="select">
+<div class="select" [ngClass]="{
+    'select--disabled': disabled
+}">
     <div class="select__current" [ngClass]="{'select__current--opened': isOpened}"
         (click)="setIsOpened(!isOpened)">
         <span *ngIf="current?.icon?.spriteId" class="select__icon">

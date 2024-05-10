@@ -1,21 +1,21 @@
 <app-header />
-<div class="p-12">
-    <h4>Список интерактивных страниц</h4>
-    <ul class="mt-6 ml-4 list-disc">
-        <li>
-            <a routerLink="/fleet" class="text-dark hover:text-primary font-semibold">
-                Страница "Обзор"
-            </a>
-        </li>
-        <li>
-            <a routerLink="/vehicles" class="text-dark hover:text-primary font-semibold">
-                Страница "Транспорт"
-            </a>
-        </li>
-        <li>
-            <a routerLink="/drivers" class="text-dark hover:text-primary font-semibold">
-                Страница "Водители"
-            </a>
-        </li>
-    </ul>
+<div class="home">
+    <div *ngFor="let row of homeLinks" class="home__row">
+        <a *ngFor="let link of row" [routerLink]="link.href" class="link flex-grow" [ngStyle]="{
+                flexBasis: 100/row.length+'%'
+            }">
+            <div class="link__image">
+                <img [src]="link.imgSrc || 'assets/images/home.jpg'" [alt]="link.title" />
+            </div>
+            <div class="link__content">
+                <h6 class="link__title" [ngClass]="{'!text-[18px]': !link.description}">{{ link.title }}</h6>
+                <p *ngIf="link.description" class="link__description">{{ link.description }}</p>
+                <span class="link__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <use xlink:href="assets/icons/common.sprites.svg#link-arrow"></use>
+                    </svg>
+                </span>
+            </div>
+        </a>
+    </div>
 </div>

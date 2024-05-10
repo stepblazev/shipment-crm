@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
-import { VehiclesList } from 'src/app/models/vehicle.interface';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ConfirmService } from 'src/app/shared/services/confirm.service';
-import { IOption, SelectComponent, } from 'src/app/components/ui/select/select.component';
+import { IOption, SelectComponent } from 'src/app/components/ui/select/select.component';
+import { IVehicle } from 'src/app/models/vehicles/models/vehicle.interface';
+import { VehicleService } from 'src/app/models/vehicles/vehicles.service';
 
 @Component({
   selector: 'app-vehicles-list',
@@ -25,7 +26,7 @@ import { IOption, SelectComponent, } from 'src/app/components/ui/select/select.c
     '../../../../../styles/mat/table.scss',
   ],
 })
-export class VehiclesListComponent implements AfterViewInit {
+export class VehiclesListComponent implements AfterViewInit, OnInit {
   public displayedColumns: string[] = [
     'select',
     'status',
@@ -34,12 +35,12 @@ export class VehiclesListComponent implements AfterViewInit {
     'model',
     'year',
     'load_capacity',
-    'registration.number',
-    'registration.country',
-    'registration.state',
+    'registration_number',
+    'registration_country',
+    'registration_state',
   ];
 
-  public dataSource = new MatTableDataSource(VehiclesList);
+  public dataSource: MatTableDataSource<IVehicle>;
   public selectedRows: number[] = [];
 
   public currentMakeOption: IOption<string>;
@@ -57,16 +58,18 @@ export class VehiclesListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
 
   constructor(
-    private readonly router: Router,
+    public readonly vehicleService: VehicleService,
+    public readonly router: Router,
     private readonly confirmService: ConfirmService
   ) {}
 
-  ngAfterViewInit() {
-    if (this.sort) this.dataSource.sort = this.sort;
+  ngOnInit(): void {
+    this.vehicleService.getList();
+    this.dataSource = new MatTableDataSource(this.vehicleService.vehicles);
   }
-  
-  public toDetail(id: string) {
-    this.router.navigate(['vehicles', id]);
+
+  ngAfterViewInit(): void {
+    if (this.sort) this.dataSource.sort = this.sort;
   }
 
   public toggleSelect(selectedId: number): void {
@@ -93,29 +96,10 @@ export class VehiclesListComponent implements AfterViewInit {
       })
       .subscribe((answer: boolean) => {
         if (answer) {
-          this.selectedRows = this.selectedRows.filter(
-            (id) => !ids.includes(id)
-          );
-          this.dataSource = new MatTableDataSource(
-            VehiclesList.filter((vehicle) => !ids.includes(vehicle.id))
-          );
+          this.vehicleService.deleteByIds(ids);
+          this.dataSource = new MatTableDataSource(this.vehicleService.vehicles);
+          this.selectedRows = this.selectedRows.filter(id => !ids.includes(id));
         }
       });
-  }
-
-  // FIXME удалить
-  public getStatusEmoji(status: string): string {
-    switch (status) {
-      case 'Works':
-        return '🚚';
-      case 'Waits':
-        return '⌛';
-      case 'Repairs':
-        return '🪛';
-      case 'NotInUse':
-        return '🪦';
-      default:
-        return '-';
-    }
   }
 }

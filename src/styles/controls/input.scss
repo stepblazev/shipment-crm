@@ -15,6 +15,10 @@
     &:not(:focus):hover {
       @apply bg-light;
     }
+    
+    &:disabled {
+        @apply bg-light;
+    }
   }
 
   &::after {
