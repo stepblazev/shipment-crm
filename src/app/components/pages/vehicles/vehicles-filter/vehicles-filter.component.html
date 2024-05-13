@@ -1,0 +1,20 @@
+<div class="flex items-end gap-4">
+    
+    <div class="control w-[300px]">
+        <label class="control__caption" for="search">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <use xlink:href="assets/icons/common.sprites.svg#search"></use>
+            </svg>
+            Поиск
+        </label>
+        <input type="search" id="search" class="control__input" placeholder="Поиск по всем параметрам..." />
+    </div>
+    
+    <div class="control w-[240px]">
+        <span class="control__caption">
+            Тип транспорта
+        </span>
+        <app-select [options]="typeOptions" [current]="currentTypeOption" (valueChanged)="currentTypeOption=$event" />
+    </div>
+   
+</div>

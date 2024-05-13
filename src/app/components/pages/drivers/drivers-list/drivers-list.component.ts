@@ -1,68 +1,86 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DriversList } from 'src/app/models/driver.interface';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmService } from 'src/app/shared/services/confirm.service';
 import { RouterLink } from '@angular/router';
+import { DriverService } from 'src/app/models/drivers/driver.service';
+import { IDriver } from 'src/app/models/drivers/models/driver.interface';
+import { DataTableComponent, IDataTableColumn } from 'src/app/components/ui/data-table/data-table.component';
 
 @Component({
   standalone: true,
   selector: 'app-drivers-list',
   templateUrl: './drivers-list.component.html',
-  styleUrls: ['./drivers-list.component.scss', '../../../../../styles/mat/table.scss'],
-  imports: [CommonModule, MatTableModule, MatSortModule, MatCheckboxModule, RouterLink],
+  styleUrls: ['./drivers-list.component.scss'],
+  imports: [CommonModule, RouterLink, DataTableComponent],
 })
-export class DriversListComponent {
-    public displayedColumns: string[] = [
-        'select',
-        'first_name',
-        'last_name',
-        'birth_date',
-        'phone',
-        'email',
-        'license_type',
-        'license_number',
-        'license_expire_date',
-    ];
+export class DriversListComponent implements OnInit {
+  public columns: IDataTableColumn[] = [
+    {
+      key: 'first_name',
+      alias: 'Имя',
+      sort: true,
+    },
+    {
+      key: 'last_name',
+      alias: 'Фамилия',
+      sort: true,
+    },
+    {
+      key: 'birth_date',
+      alias: 'Дата рождения',
+      sort: true,
+    },
+    {
+      key: 'phone',
+      alias: 'Телефон',
+      sort: true,
+    },
+    {
+      key: 'email',
+      alias: 'Эл.почта',
+      sort: true,
+    },
+    {
+      key: 'license_type',
+      alias: 'Тип прав',
+      sort: true,
+    },
+    {
+      key: 'license_number',
+      alias: 'Номер прав',
+      sort: true,
+    },
+    {
+      key: 'license_expire_date',
+      alias: 'Права истекают',
+      sort: true,
+    },
+  ];
 
-    public dataSource = new MatTableDataSource(DriversList);
-    public selectedRows: number[] = [];
+  public selectedRows: number[] = [];
+  public drivers: IDriver[] = [];
 
-    @ViewChild(MatSort) sort: MatSort | undefined;
+  constructor(
+    private readonly confirmService: ConfirmService,
+    private readonly driverService: DriverService
+  ) {}
 
-    constructor(private readonly confirmService: ConfirmService) {}
+  ngOnInit(): void {
+    this.driverService.getList();
+    this.drivers = this.driverService.drivers;
+  }
 
-    ngAfterViewInit() {
-        if (this.sort) this.dataSource.sort = this.sort;
-    }
-
-    public toggleSelect(selectedId: number): void {
-        if (!this.selectedRows.includes(selectedId)) {
-            this.selectedRows = [...this.selectedRows, selectedId];
-        } else {
-            this.selectedRows = this.selectedRows.filter((id) => id != selectedId);
+  public deleteByIds(ids: number[]): void {
+    this.confirmService
+      .confirm({
+        title: 'Удалить выбранные элементы?',
+        message: `Будет удалено элементов: ${ids.length}`,
+      })
+      .subscribe((answer: boolean) => {
+        if (answer) {
+          this.driverService.deleteByIds(ids);
+          this.drivers = this.driverService.drivers;
         }
-    }
-
-    public setAll(state: boolean): void {
-        if (state) {
-            this.selectedRows = this.dataSource.data.map((row) => row.id);
-        } else {
-            this.selectedRows = [];
-        }
-    }
-
-    public deleteByIds(ids: number[]): void {
-        this.confirmService.confirm({
-                title: 'Удалить выбранные элементы?', 
-                message: `Будет удалено ${ids.length} элементов.`
-            }).subscribe((answer: boolean) => {
-            if (answer) {
-                this.selectedRows = this.selectedRows.filter(id => !ids.includes(id));
-                this.dataSource = new MatTableDataSource(DriversList.filter(driver => !ids.includes(driver.id)));
-            }
-        })
-    }
+      });
+  }
 }

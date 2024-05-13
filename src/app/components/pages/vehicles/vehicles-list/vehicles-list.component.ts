@@ -5,9 +5,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ConfirmService } from 'src/app/shared/services/confirm.service';
-import { IOption, SelectComponent } from 'src/app/components/ui/select/select.component';
-import { IVehicle } from 'src/app/models/vehicles/models/vehicle.interface';
-import { VehicleService } from 'src/app/models/vehicles/vehicles.service';
+import { IVehicle, TVehicleStatus, TVehicleType } from 'src/app/models/vehicles/models/vehicle.interface';
+import { VehicleService } from 'src/app/models/vehicles/vehicle.service';
+import { VehiclesFilterComponent } from '../vehicles-filter/vehicles-filter.component';
+import { VehicleTypeAliases } from 'src/app/models/vehicles/aliases/type';
+import { VehicleStatusAliases } from 'src/app/models/vehicles/aliases/status';
 
 @Component({
   selector: 'app-vehicles-list',
@@ -18,7 +20,7 @@ import { VehicleService } from 'src/app/models/vehicles/vehicles.service';
     MatSortModule,
     MatCheckboxModule,
     RouterLink,
-    SelectComponent,
+    VehiclesFilterComponent,
   ],
   templateUrl: './vehicles-list.component.html',
   styleUrls: [
@@ -43,29 +45,17 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
   public dataSource: MatTableDataSource<IVehicle>;
   public selectedRows: number[] = [];
 
-  public currentMakeOption: IOption<string>;
-  public makeOptions: IOption<string>[] = [
-    { caption: 'Ford', value: 'Ford' },
-    { caption: 'Volvo', value: 'Volvo' },
-    { caption: 'Toyota', value: 'Toyota' },
-    { caption: 'Volkswagen', value: 'Volkswagen' },
-    { caption: 'MAN', value: 'MAN' },
-    { caption: 'Yamaha', value: 'Yamaha' },
-    { caption: 'Mercedes-Benz', value: 'Mercedes-Benz' },
-    { caption: 'Chevrolet', value: 'Chevrolet' },
-  ];
-
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    public readonly vehicleService: VehicleService,
     public readonly router: Router,
+    public readonly vehicleService: VehicleService,
     private readonly confirmService: ConfirmService
   ) {}
 
   ngOnInit(): void {
     this.vehicleService.getList();
-    this.dataSource = new MatTableDataSource(this.vehicleService.vehicles);
+    this.dataSource = new MatTableDataSource<IVehicle>(this.vehicleService.vehicles);
   }
 
   ngAfterViewInit(): void {
@@ -92,14 +82,22 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
     this.confirmService
       .confirm({
         title: 'Удалить выбранные элементы?',
-        message: `Будет удалено ${ids.length} элементов.`,
+        message: `Будет удалено элементов: ${ids.length}`,
       })
       .subscribe((answer: boolean) => {
         if (answer) {
           this.vehicleService.deleteByIds(ids);
           this.dataSource = new MatTableDataSource(this.vehicleService.vehicles);
-          this.selectedRows = this.selectedRows.filter(id => !ids.includes(id));
+          this.selectedRows = this.selectedRows.filter((id) => !ids.includes(id));
         }
       });
+  }
+  
+  public getStatusAlias(status: string): string {
+    return VehicleStatusAliases[status as TVehicleStatus];
+  }
+  
+  public getTypeAlias(type: string): string {
+    return VehicleTypeAliases[type as TVehicleType];
   }
 }

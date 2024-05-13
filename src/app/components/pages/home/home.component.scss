@@ -1,5 +1,5 @@
 .home {
-    @apply p-4;
+    @apply p-4 pb-[400px] bg-light bg-blend-overlay bg-[url(../../../../assets/images/van.jpg)] bg-cover bg-center bg-fixed;
     
     &__row {
         @apply max-w-full flex gap-4;
@@ -11,13 +11,13 @@
 }
 
 .link {
-  @apply rounded-lg border-light border-[2px] bg-white transition cursor-pointer overflow-hidden;
+  @apply rounded-lg border-white border-[3px] bg-white transition cursor-pointer overflow-hidden drop-shadow-md;
 
   &__image {
     @apply relative pb-[40%];
 
     img {
-      @apply absolute top-0 left-0 w-full h-full object-cover object-center grayscale opacity-50 transition-all;
+      @apply absolute top-0 left-0 w-full h-full object-cover object-center grayscale-[0.5] opacity-50 transition-all;
     }
   }
 
@@ -38,7 +38,7 @@
   }
 
   &:hover {
-    @apply border-primary drop-shadow-md;
+    @apply border-primary;
   }
 
   &:hover &__image img {

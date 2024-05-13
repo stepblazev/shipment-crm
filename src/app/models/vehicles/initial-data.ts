@@ -11,7 +11,7 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'EF456GH',
     registration_country: 'SE',
     registration_state: 'Stockholm',
-    load_capacity: 20000,
+    load_capacity: '20000 кг',
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'AB123CD',
     registration_country: 'RU',
     registration_state: 'Moscow',
-    load_capacity: 1500,
+    load_capacity: '1500 кг',
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const InitialVehiclesList: IVehicle[] = [
   {
     id: 4,
     status: 'Works',
-    type: 'Bike',
+    type: 'Car',
     make: 'Yamaha',
     model: 'YZF-R3',
     year: 2017,
@@ -57,7 +57,7 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'QR456ST',
     registration_country: 'DE',
     registration_state: 'Berlin',
-    load_capacity: 25000,
+    load_capacity: '25000 кг',
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'UV789WX',
     registration_country: 'DE',
     registration_state: 'Hamburg',
-    load_capacity: 800,
+    load_capacity: '800 кг',
   },
   {
     id: 7,
@@ -92,7 +92,7 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'CD456EF',
     registration_country: 'DE',
     registration_state: 'Munich',
-    load_capacity: 22000,
+    load_capacity: '22000 кг',
   },
   {
     id: 9,
@@ -104,7 +104,7 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'GH789IJ',
     registration_country: 'IT',
     registration_state: 'Milan',
-    load_capacity: 300,
+    load_capacity: '300 кг',
   },
   {
     id: 10,
@@ -116,6 +116,6 @@ export const InitialVehiclesList: IVehicle[] = [
     registration_number: 'KL123MN',
     registration_country: 'KR',
     registration_state: 'Seoul',
-    load_capacity: 1000,
+    load_capacity: '1000 кг',
   },
 ];

@@ -1,9 +1,71 @@
-<div class="m-4">
-    <p>vehicles-new works!</p>
-    <button type="button" routerLink="/vehicles" class="mt-4 btn-alt">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <use xlink:href="assets/icons/common.sprites.svg#arrow-back"></use>
-        </svg>
-        Назад к списку
-    </button>
+<div class="new">
+    <div class="new__card">
+        <form class="w-[800px]">
+            <div class="new__section">
+                <h6 class="new__section-title">Общие сведения</h6>
+                <div class="control">
+                    <span class="control__caption">Статус</span>
+                    <app-select [options]="statusOptions" [current]="currentStatusOption"
+                        (valueChanged)="this.currentStatusOption = $event" [allowEmpty]="false" />
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[25%] control">
+                        <span class="control__caption">Тип</span>
+                        <app-select [options]="typeOptions" [current]="currentTypeOption"
+                            (valueChanged)="this. currentTypeOption = $event" [allowEmpty]="false" />
+                    </div>
+                    <div class="basis-[25%] control">
+                        <label class="control__caption" for="make">Марка</label>
+                        <input type="text" id="make" name="make" class="control__input" [(ngModel)]="make" />
+                    </div>
+                    <div class="basis-[25%] control">
+                        <label class="control__caption" for="model">Модель</label>
+                        <input type="text" id="model" name="model" class="control__input" [(ngModel)]="model" />
+                    </div>
+                    <div class="basis-[25%] control">
+                        <label class="control__caption" for="year">Год выпуска</label>
+                        <input type="text" id="year" name="year" class="control__input" [(ngModel)]="year" />
+                    </div>
+                </div>
+                <div class="mt-4 control">
+                    <label class="control__caption" for="load_capacity">Макс. вместимость</label>
+                    <input type="text" id="load_capacity" name="load_capacity" class="control__input"
+                        [(ngModel)]="load_capacity" placeholder="Не указано" />
+                </div>
+            </div>
+            <div class="new__section">
+                <h6 class="new__section-title">Сведения о регистрации</h6>
+                <div class="flex gap-4">
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="registration_number">Номер регистрации</label>
+                        <input type="text" id="registration_number" name="registration_number" class="control__input"
+                            [(ngModel)]="registration_number" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="registration_country">Страна регистрации</label>
+                        <input type="text" id="registration_country" name="registration_country" class="control__input"
+                            [(ngModel)]="registration_country" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="registration_state">Регион регистрации</label>
+                        <input type="text" id="registration_state" name="registration_state" class="control__input"
+                            [(ngModel)]="registration_state" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <div class="new__controls">
+            <button type="button" (click)="create()" class="btn">
+                Добавить
+            </button>
+            <button type="button" routerLink="/vehicles" class="btn-alt">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#arrow-back"></use>
+                </svg>
+                Назад к списку
+            </button>
+        </div>
+    </div>
 </div>

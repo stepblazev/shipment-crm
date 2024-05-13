@@ -22,10 +22,10 @@
     }
   
     &__options {
-      @apply max-h-[224px] absolute top-full mt-1 left-0 w-full z-10 bg-light border-y-[3px] border-light transition-all overflow-y-auto;
+      @apply max-h-[224px] absolute top-full mt-1 left-0 w-full z-10 bg-light border-y-[3px] border-light transition-all drop-shadow-lg overflow-y-auto;
   
       &--hidden {
-        @apply opacity-0 scale-75;
+        @apply opacity-0 scale-90;
         visibility: hidden;
       }
     }

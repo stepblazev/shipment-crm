@@ -2,17 +2,17 @@
   @apply p-4;
 
   &__title {
-    @apply text-dark transition;
+    @apply text-dark transition opacity-50;
   }
   
   &__card {
     @apply p-8 border-[2px] border-light rounded-lg bg-white transition;
     
     &--update {
-        @apply border-primary;
+        @apply border-primary drop-shadow-lg;
         
         .vehicle__title {
-            @apply text-primary;
+            @apply text-primary opacity-100;
         }
     }
   }

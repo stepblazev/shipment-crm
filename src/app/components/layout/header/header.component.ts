@@ -35,6 +35,10 @@ export class HeaderComponent {
         }
       });
   }
+  
+  public isRootFolder(): boolean {
+    return location.pathname == '/';
+  }
 
   @HostListener('body:click', ['$event'])
   handleClick(event: Event) {
