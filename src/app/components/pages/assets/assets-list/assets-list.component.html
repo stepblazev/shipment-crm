@@ -1,1 +1,21 @@
-<p>assets-list works!</p>
+<app-data-table [data]="assets" [columns]="columns" [allowSelect]="true" [selectedRows]="selectedRows"
+    (changeSelect)="selectedRows=$event" (dblClickItem)="toDetail($event)" />
+
+<div class="px-6 py-2 sticky bottom-0 bg-white flex justify-between items-center border-t-[1px] border-light opacity-0 invisible transition-all"
+    [ngClass]="{
+    'opacity-100 !visible': selectedRows.length
+}">
+    <div>
+        <span class="text-body-1">Выделено элементов:</span>
+        <span class="ml-4 text-body-1 font-bold">{{selectedRows.length}}</span>
+    </div>
+    <div class="flex items-center gap-4">
+        <button type="button" class="btn btn--error" (click)="deleteByIds(selectedRows)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <use xlink:href="assets/icons/common.sprites.svg#trash-bin"></use>
+            </svg>
+            Удалить
+        </button>
+        <button type="button" (click)="selectedRows=[]" class="btn-alt">Отменить</button>
+    </div>
+</div>

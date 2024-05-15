@@ -22,19 +22,24 @@ export class DataTableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() data: object[];
   @Input() columns: IDataTableColumn[];
   @Input() allowSelect: boolean = false;
+  @Input() selectedRows: number[] = [];
 
   @Output() dblClickItem = new EventEmitter<object>();
   @Output() changeSelect = new EventEmitter<number[]>();
 
   public dataSource: MatTableDataSource<any>;
   public displayedColumns: string[] = [];
-  public selectedRows: number[] = [];
 
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource = new MatTableDataSource<any>(changes['data'].currentValue);
-    this.setSelectForAll(false);
+    if (changes['data']) {
+        this.dataSource = new MatTableDataSource<any>(changes['data'].currentValue);
+        this.setSelectForAll(false);
+    }
+    if (changes['selectedRows']) {
+        this.selectedRows = changes['selectedRows'].currentValue;
+    }
   }
   
   ngOnInit(): void {

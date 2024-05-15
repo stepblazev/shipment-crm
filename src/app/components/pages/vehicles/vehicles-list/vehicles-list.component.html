@@ -9,93 +9,8 @@
     </div>
 </div>
 
-<table matSort mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox *ngIf="dataSource.data.length" color="primary"
-                [checked]="selectedRows.length == dataSource.data.length" (change)="setAll($event.checked)" />
-        </th>
-        <td mat-cell *matCellDef="let element">
-            <mat-checkbox color="primary" [checked]="selectedRows.includes(element.id)" />
-        </td>
-    </ng-container>
-
-    <ng-container matColumnDef="make">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by make">
-            Марка
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.make }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="model">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by model">
-            Модель
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.model }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="year">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by year">
-            Год выпуска
-        </th>
-        <td mat-cell *matCellDef="let element">
-            {{ element.year }}
-        </td>
-    </ng-container>
-
-    <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by type">
-            Тип
-        </th>
-        
-        <td mat-cell *matCellDef="let element">{{ getTypeAlias(element.type) }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status">
-            Статус
-        </th>
-        <td mat-cell *matCellDef="let element">{{ getStatusAlias(element.status) }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="load_capacity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by load capacity">
-            Макс. вместимость
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.load_capacity ?? 'Неизвестно' }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="registration_number">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registration number">
-            Номер рег.
-        </th>
-        <td mat-cell *matCellDef="let element">
-            {{ element.registration_number }}
-        </td>
-    </ng-container>
-
-    <ng-container matColumnDef="registration_country">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registration country">
-            Страна рег.
-        </th>
-        <td mat-cell *matCellDef="let element">
-            {{ element.registration_country }}
-        </td>
-    </ng-container>
-
-    <ng-container matColumnDef="registration_state">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by registration state">
-            Регион рег.
-        </th>
-        <td mat-cell *matCellDef="let element">
-            {{ element.registration_state }}
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="toggleSelect(row.id)"
-        (dblclick)="router.navigate(['vehicles', row.id])" [ngClass]="{ _active: selectedRows.includes(row.id) }"></tr>
-</table>
+<app-data-table [data]="vehicles" [columns]="columns" [allowSelect]="true" [selectedRows]="selectedRows"
+    (dblClickItem)="toDetail($event)" (changeSelect)="selectedRows=$event" />
 
 <div class="px-6 py-2 sticky bottom-0 bg-white flex justify-between items-center border-t-[1px] border-light opacity-0 invisible transition-all"
     [ngClass]="{
@@ -112,6 +27,6 @@
             </svg>
             Удалить
         </button>
-        <button type="button" class="btn-alt" (click)="setAll(false)">Отменить</button>
+        <button type="button" (click)="selectedRows=[]" class="btn-alt">Отменить</button>
     </div>
 </div>

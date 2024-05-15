@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { LOCAL_STORAGE_KEYS } from 'src/constants';
-import { IDriver } from '../driver.interface';
 import { InitialDriversList } from './initial-data';
+import { IDriver } from './models/driver.interface';
+import { isDateString } from 'src/app/shared/utils/is-date-string';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +57,12 @@ export class DriverService {
   }
   
   public static getFullName(driver: IDriver): string {
-    return `${driver.first_name} ${driver.last_name} (${driver.birth_date.toLocaleDateString('ru-RU')}) | ${driver.email}`;
+    let birth_date: string;
+    if (driver.birth_date instanceof Date) {
+        birth_date = driver.birth_date.toLocaleDateString('ru-RU');
+    } else {
+        birth_date = new Date(driver.birth_date).toLocaleDateString('ru-RU');
+    }
+    return `${driver.first_name} ${driver.last_name} (${birth_date}) | ${driver.email}`;
   }
 }

@@ -1,15 +1,6 @@
-export interface IAsset {
-  id: number;
-  status: 'Waiting' | 'In Progress' | 'Completed' | 'Cancelled';
-  delivery_date: Date;
-  delivery_address: string;
-  name: string;
-  weight: number;
-  width: number;
-  height: number;
-}
+import { IAsset } from './asset.interface';
 
-export const AssetsList: IAsset[] = [
+export const InitialAssetsList: IAsset[] = [
   {
     id: 1,
     status: 'Waiting',

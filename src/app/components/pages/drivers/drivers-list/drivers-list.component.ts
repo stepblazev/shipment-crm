@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmService } from 'src/app/shared/services/confirm.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DriverService } from 'src/app/models/drivers/driver.service';
 import { IDriver } from 'src/app/models/drivers/models/driver.interface';
 import { DataTableComponent, IDataTableColumn } from 'src/app/components/ui/data-table/data-table.component';
@@ -61,6 +61,7 @@ export class DriversListComponent implements OnInit {
   public drivers: IDriver[] = [];
 
   constructor(
+    private readonly router: Router,
     private readonly confirmService: ConfirmService,
     private readonly driverService: DriverService
   ) {}
@@ -70,6 +71,10 @@ export class DriversListComponent implements OnInit {
     this.drivers = this.driverService.drivers;
   }
 
+  public toDetail(driver: any): void {
+    this.router.navigate(['drivers', (driver as IDriver).id]);
+  }
+  
   public deleteByIds(ids: number[]): void {
     this.confirmService
       .confirm({

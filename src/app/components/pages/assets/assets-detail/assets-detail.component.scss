@@ -1,4 +1,4 @@
-.driver {
+.asset {
     @apply p-4;
   
     &__title {
@@ -11,7 +11,7 @@
       &--update {
           @apply border-primary drop-shadow-lg;
           
-          .driver__title {
+          .asset__title {
               @apply text-primary opacity-100;
           }
       }

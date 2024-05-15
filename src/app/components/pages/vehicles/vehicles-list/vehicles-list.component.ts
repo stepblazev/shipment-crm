@@ -1,83 +1,91 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ConfirmService } from 'src/app/shared/services/confirm.service';
-import { IVehicle, TVehicleStatus, TVehicleType } from 'src/app/models/vehicles/models/vehicle.interface';
+import { IVehicle } from 'src/app/models/vehicles/models/vehicle.interface';
 import { VehicleService } from 'src/app/models/vehicles/vehicle.service';
 import { VehiclesFilterComponent } from '../vehicles-filter/vehicles-filter.component';
-import { VehicleTypeAliases } from 'src/app/models/vehicles/aliases/type';
-import { VehicleStatusAliases } from 'src/app/models/vehicles/aliases/status';
+import { DataTableComponent, IDataTableColumn } from 'src/app/components/ui/data-table/data-table.component';
 
 @Component({
   selector: 'app-vehicles-list',
   standalone: true,
   imports: [
     CommonModule,
-    MatTableModule,
-    MatSortModule,
-    MatCheckboxModule,
+    DataTableComponent,
     RouterLink,
     VehiclesFilterComponent,
   ],
   templateUrl: './vehicles-list.component.html',
-  styleUrls: [
-    './vehicles-list.component.scss',
-    '../../../../../styles/mat/table.scss',
-  ],
+  styleUrls: ['./vehicles-list.component.scss'],
 })
-export class VehiclesListComponent implements AfterViewInit, OnInit {
-  public displayedColumns: string[] = [
-    'select',
-    'status',
-    'type',
-    'make',
-    'model',
-    'year',
-    'load_capacity',
-    'registration_number',
-    'registration_country',
-    'registration_state',
+export class VehiclesListComponent implements OnInit {
+  public columns: IDataTableColumn[] = [
+    {
+      key: 'status',
+      alias: 'Статус',
+      sort: true,
+    },
+    {
+      key: 'type',
+      alias: 'Тип',
+      sort: true,
+    },
+    {
+      key: 'make',
+      alias: 'Марка',
+      sort: true,
+    },
+    {
+      key: 'model',
+      alias: 'Модель',
+      sort: true,
+    },
+    {
+      key: 'year',
+      alias: 'Год выпуска',
+      sort: true,
+    },
+    {
+      key: 'load_capacity',
+      alias: 'Макс. нагрузка',
+      sort: true,
+    },
+    {
+      key: 'registration_number',
+      alias: 'Номер регистрации',
+      sort: true,
+    },
+    {
+      key: 'registration_country',
+      alias: 'Страна регистрации',
+      sort: true,
+    },
+    {
+      key: 'registration_state',
+      alias: 'Регион регистрации',
+      sort: true,
+    },
   ];
 
-  public dataSource: MatTableDataSource<IVehicle>;
   public selectedRows: number[] = [];
-
-  @ViewChild(MatSort) sort: MatSort;
+  public vehicles: IVehicle[] = [];
 
   constructor(
-    public readonly router: Router,
-    public readonly vehicleService: VehicleService,
+    private readonly router: Router,
+    private readonly vehicleService: VehicleService,
     private readonly confirmService: ConfirmService
   ) {}
 
   ngOnInit(): void {
     this.vehicleService.getList();
-    this.dataSource = new MatTableDataSource<IVehicle>(this.vehicleService.vehicles);
+    this.vehicles = this.vehicleService.vehicles;
   }
 
-  ngAfterViewInit(): void {
-    if (this.sort) this.dataSource.sort = this.sort;
+  public toDetail(vehicle: any): void {
+    this.router.navigate(['vehicles', (vehicle as IVehicle).id])
   }
-
-  public toggleSelect(selectedId: number): void {
-    if (!this.selectedRows.includes(selectedId)) {
-      this.selectedRows = [...this.selectedRows, selectedId];
-    } else {
-      this.selectedRows = this.selectedRows.filter((id) => id != selectedId);
-    }
-  }
-
-  public setAll(state: boolean): void {
-    if (state) {
-      this.selectedRows = this.dataSource.data.map((row) => row.id);
-    } else {
-      this.selectedRows = [];
-    }
-  }
-
+  
   public deleteByIds(ids: number[]): void {
     this.confirmService
       .confirm({
@@ -87,17 +95,11 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
       .subscribe((answer: boolean) => {
         if (answer) {
           this.vehicleService.deleteByIds(ids);
-          this.dataSource = new MatTableDataSource(this.vehicleService.vehicles);
-          this.selectedRows = this.selectedRows.filter((id) => !ids.includes(id));
+          this.vehicles = this.vehicleService.vehicles;
+          this.selectedRows = this.selectedRows.filter(
+            (id) => !ids.includes(id)
+          );
         }
       });
-  }
-  
-  public getStatusAlias(status: string): string {
-    return VehicleStatusAliases[status as TVehicleStatus];
-  }
-  
-  public getTypeAlias(type: string): string {
-    return VehicleTypeAliases[type as TVehicleType];
   }
 }

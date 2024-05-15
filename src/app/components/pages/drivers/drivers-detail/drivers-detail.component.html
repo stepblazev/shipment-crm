@@ -1,1 +1,97 @@
-<p>drivers-detail works!</p>
+<div class="driver">
+    <div *ngIf="driver" class="driver__card" [ngClass]="{
+        'driver__card--update': isEdit
+    }">
+        <h3 class="driver__title">{{ getFullName() }}</h3>
+
+        <!-- <form class="mt-8 w-[800px]">
+            <div class="driver__section">
+                <h6 class="driver__section-title">Общие сведения</h6>
+                <div class="control">
+                    <label class="control__caption" for="id">ID</label>
+                    <input type="text" id="id" class="control__input" [value]="vehicle.id" disabled />
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[25%] control">
+                        <label class="control__caption" for="make">Марка</label>
+                        <input type="text" id="make" name="make" class="control__input" [(ngModel)]="make"
+                            [disabled]="!isEdit" />
+                    </div>
+                    <div class="basis-[25%] control">
+                        <label class="control__caption" for="model">Модель</label>
+                        <input type="text" id="model" name="model" class="control__input" [(ngModel)]="model"
+                            [disabled]="!isEdit" />
+                    </div>
+                    <div class="basis-[25%] control">
+                        <label class="control__caption" for="year">Год выпуска</label>
+                        <input type="text" id="year" name="year" class="control__input" [(ngModel)]="year"
+                            [disabled]="!isEdit" />
+                    </div>
+                </div>
+                <div class="mt-4 control">
+                    <label class="control__caption" for="load_capacity">Макс. вместимость</label>
+                    <input type="text" id="load_capacity" name="load_capacity" class="control__input"
+                        [(ngModel)]="load_capacity" placeholder="Не указано" [disabled]="!isEdit" />
+                </div>
+            </div>
+            <div class="driver__section">
+                <h6 class="driver__section-title">Сведения о регистрации</h6>
+                <div class="flex gap-4">
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="registration_number">Номер регистрации</label>
+                        <input type="text" id="registration_number" name="registration_number" class="control__input"
+                            [(ngModel)]="registration_number" [disabled]="!isEdit" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="registration_country">Страна регистрации</label>
+                        <input type="text" id="registration_country" name="registration_country" class="control__input"
+                            [(ngModel)]="registration_country" [disabled]="!isEdit" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="registration_state">Регион регистрации</label>
+                        <input type="text" id="registration_state" name="registration_state" class="control__input"
+                            [(ngModel)]="registration_state" [disabled]="!isEdit" />
+                    </div>
+                </div>
+            </div>
+        </form> -->
+
+        <div *ngIf="!isEdit" class="driver__controls">
+            <button type="button" (click)="this.isEdit = true" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#edit"></use>
+                </svg>
+                Редактировать
+            </button>
+            <button type="button" (click)="delete()" class="btn btn--error">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#trash-bin"></use>
+                </svg>
+                Удалить
+            </button>
+            <button type="button" routerLink="/drivers" class="btn-alt">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#arrow-back"></use>
+                </svg>
+                Назад к списку
+            </button>
+        </div>
+
+        <div *ngIf="isEdit" class="driver__controls">
+            <button type="button" (click)="update()" class="btn btn--success">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#save"></use>
+                </svg>
+                Сохранить изменения
+            </button>
+            <button type="button" (click)="reset()" class="btn-alt">
+                Отменить изменения
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="!driver">
+        <h3 class="mt-12 text-center opacity-50">Водитель не найден</h3>
+    </div>
+</div>

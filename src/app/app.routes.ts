@@ -19,6 +19,10 @@ import { DriversListComponent } from './components/pages/drivers/drivers-list/dr
 import { AssetsListComponent } from './components/pages/assets/assets-list/assets-list.component';
 import { VehiclesDetailComponent } from './components/pages/vehicles/vehicles-detail/vehicles-detail.component';
 import { VehicleDetailResolver } from './shared/resolvers/vehicle-detail.resolver';
+import { DriversDetailComponent } from './components/pages/drivers/drivers-detail/drivers-detail.component';
+import { DriverDetailResolver } from './shared/resolvers/driver-detail.resolver';
+import { AssetsDetailComponent } from './components/pages/assets/assets-detail/assets-detail.component';
+import { AssetDetailResolver } from './shared/resolvers/asset-detail.resolver';
 
 export const routes: Routes = [
   {
@@ -80,6 +84,12 @@ export const routes: Routes = [
         title: 'Новый водитель',
         component: DriversNewComponent,
       },
+      {
+        path: ':id',
+        title: 'Водитель детально',
+        component: DriversDetailComponent,
+        resolve: { driver: DriverDetailResolver },
+      },
     ],
   },
   {
@@ -97,6 +107,12 @@ export const routes: Routes = [
         path: 'new',
         title: 'Новый груз',
         component: AssetsNewComponent,
+      },
+      {
+        path: ':id',
+        title: 'Груз детально',
+        component: AssetsDetailComponent,
+        resolve: { asset: AssetDetailResolver },
       },
     ],
   },
