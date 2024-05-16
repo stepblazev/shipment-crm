@@ -1,3 +1,11 @@
+<div class="p-6 bg-white relative z-20">
+    <div class="flex justify-end">
+        <div class="flex items-center gap-4">
+            <button type="button" routerLink="/drivers/new" class="btn">Добавить</button>
+        </div>
+    </div>
+</div>
+
 <app-data-table [data]="drivers" [columns]="columns" [allowSelect]="true" [selectedRows]="selectedRows" (changeSelect)="selectedRows=$event" (dblClickItem)="toDetail($event)" />
 
 <div class="px-6 py-2 sticky bottom-0 bg-white flex justify-between items-center border-t-[1px] border-light opacity-0 invisible transition-all" [ngClass]="{

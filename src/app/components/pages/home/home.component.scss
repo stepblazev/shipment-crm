@@ -1,13 +1,17 @@
 .home {
-    @apply p-4 pb-[400px] bg-light bg-blend-overlay bg-[url(../../../../assets/images/van.jpg)] bg-cover bg-center bg-fixed;
-    
-    &__row {
-        @apply max-w-full flex gap-4;
-        
-        &:not(:first-child) {
-            @apply mt-12;
-        }
+  @apply flex;
+
+  &__sections {
+    @apply p-4 bg-white;
+  }
+
+  &__row {
+    @apply max-w-full flex gap-4;
+
+    &:not(:first-child) {
+      @apply mt-12;
     }
+  }
 }
 
 .link {
@@ -17,16 +21,16 @@
     @apply relative pb-[40%];
 
     img {
-      @apply absolute top-0 left-0 w-full h-full object-cover object-center grayscale-[0.5] opacity-50 transition-all;
+      @apply absolute top-0 left-0 w-full h-full object-cover object-center grayscale-[0.5] transition-all;
     }
   }
 
   &__content {
-    @apply p-6 pr-[100px] relative;
+    @apply p-4 pr-[60px] relative;
   }
 
   &__title {
-    @apply mb-4 text-[1.5rem] text-dark opacity-50 font-semibold whitespace-nowrap overflow-hidden overflow-ellipsis leading-none transition;
+    @apply mb-4 text-[1.25rem] text-dark opacity-50 font-semibold whitespace-nowrap overflow-hidden overflow-ellipsis leading-none transition;
   }
 
   &__description {
@@ -34,7 +38,7 @@
   }
 
   &__icon {
-    @apply absolute right-4 top-4 h-[52px] w-[52px] p-4 rounded-full bg-light stroke-white transition overflow-hidden;
+    @apply absolute right-4 top-4 h-[38px] w-[38px] p-2 rounded-full bg-light stroke-white transition overflow-hidden;
   }
 
   &:hover {
@@ -42,7 +46,7 @@
   }
 
   &:hover &__image img {
-    @apply grayscale-0 opacity-100;
+    @apply grayscale-0;
   }
 
   &:hover &__title {
@@ -51,5 +55,30 @@
 
   &:hover &__icon {
     @apply bg-primary rotate-45;
+  }
+}
+
+.action {
+  @apply p-2 bg-light rounded overflow-hidden;
+
+  &__value {
+    @apply block text-center text-[2rem] font-semibold;
+    animation: value_appear 0.5s ease;
+  }
+
+  &__mean {
+    @apply block text-center text-body-2 opacity-50;
+  }
+}
+
+@keyframes value_appear {
+  0% {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+  }
+
+  1000% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

@@ -14,6 +14,7 @@ import { IHomeLink } from 'src/app/modules/home-menu/models';
 })
 export class HomeComponent {
   public homeLinks: IHomeLink[][] = homeLinks;
+  public today: string = new Date().toLocaleDateString('ru-RU');
 
   constructor() {}
 }

@@ -68,23 +68,14 @@ export class DataTableComponent implements OnInit, AfterViewInit, OnChanges {
     if (!this.allowSelect) return;
 
     if (!this.selectedRows.includes(selectedId)) {
-      this.selectedRows = [...this.selectedRows, selectedId];
+      this.changeSelect.emit([...this.selectedRows, selectedId]);
     } else {
-      this.selectedRows = this.selectedRows.filter((id) => id != selectedId);
+      this.changeSelect.emit(this.selectedRows.filter((id) => id != selectedId));
     }
-
-    this.changeSelect.emit(this.selectedRows);
   }
 
   public setSelectForAll(state: boolean): void {
     if (!this.allowSelect) return;
-
-    if (state) {
-      this.selectedRows = this.dataSource.data.map((row) => row.id);
-    } else {
-      this.selectedRows = [];
-    }
-
-    this.changeSelect.emit(this.selectedRows);
+    this.changeSelect.emit(state ? this.dataSource.data.map((row) => row.id) : []);
   }
 }

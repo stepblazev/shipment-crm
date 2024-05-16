@@ -38,6 +38,7 @@ export class VehiclesNewComponent {
   constructor(private readonly vehicleService: VehicleService, private readonly router: Router) {}
 
   public create(): void {
+    this.vehicleService.getList();
     this.vehicleService.create({
       status: this.currentStatusOption.value,
       type: this.currentTypeOption.value,

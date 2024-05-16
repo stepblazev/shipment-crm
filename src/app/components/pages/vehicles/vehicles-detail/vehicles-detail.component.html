@@ -27,23 +27,23 @@
                     <div class="basis-[25%] control">
                         <label class="control__caption" for="make">Марка</label>
                         <input type="text" id="make" name="make" class="control__input" [(ngModel)]="make"
-                            [disabled]="!isEdit" />
+                            [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                     <div class="basis-[25%] control">
                         <label class="control__caption" for="model">Модель</label>
                         <input type="text" id="model" name="model" class="control__input" [(ngModel)]="model"
-                            [disabled]="!isEdit" />
+                            [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                     <div class="basis-[25%] control">
                         <label class="control__caption" for="year">Год выпуска</label>
                         <input type="text" id="year" name="year" class="control__input" [(ngModel)]="year"
-                            [disabled]="!isEdit" />
+                            [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                 </div>
                 <div class="mt-4 control">
                     <label class="control__caption" for="load_capacity">Макс. вместимость</label>
                     <input type="text" id="load_capacity" name="load_capacity" class="control__input"
-                        [(ngModel)]="load_capacity" placeholder="Не указано" [disabled]="!isEdit" />
+                        [(ngModel)]="load_capacity" placeholder="Не заполнено" [disabled]="!isEdit" />
                 </div>
             </div>
             <div class="vehicle__section">
@@ -52,17 +52,17 @@
                     <div class="basis-[33.333%] control">
                         <label class="control__caption" for="registration_number">Номер регистрации</label>
                         <input type="text" id="registration_number" name="registration_number" class="control__input"
-                            [(ngModel)]="registration_number" [disabled]="!isEdit" />
+                            [(ngModel)]="registration_number" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                     <div class="basis-[33.333%] control">
                         <label class="control__caption" for="registration_country">Страна регистрации</label>
                         <input type="text" id="registration_country" name="registration_country" class="control__input"
-                            [(ngModel)]="registration_country" [disabled]="!isEdit" />
+                            [(ngModel)]="registration_country" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                     <div class="basis-[33.333%] control">
                         <label class="control__caption" for="registration_state">Регион регистрации</label>
                         <input type="text" id="registration_state" name="registration_state" class="control__input"
-                            [(ngModel)]="registration_state" [disabled]="!isEdit" />
+                            [(ngModel)]="registration_state" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                 </div>
             </div>

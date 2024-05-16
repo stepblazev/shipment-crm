@@ -1,21 +1,104 @@
 <app-header />
 <div class="home">
+  <div class="home__sections">
     <div *ngFor="let row of homeLinks" class="home__row">
-        <a *ngFor="let link of row" [routerLink]="link.href" class="link flex-grow" [ngStyle]="{
-                flexBasis: 100/row.length+'%'
-            }">
-            <div class="link__image">
-                <img [src]="link.imgSrc || 'assets/images/home.jpg'" [alt]="link.title" />
-            </div>
-            <div class="link__content">
-                <h6 class="link__title" [ngClass]="{'!text-[18px]': !link.description}">{{ link.title }}</h6>
-                <p *ngIf="link.description" class="link__description">{{ link.description }}</p>
-                <span class="link__icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <use xlink:href="assets/icons/common.sprites.svg#link-arrow"></use>
-                    </svg>
-                </span>
-            </div>
-        </a>
+      <a
+        *ngFor="let link of row"
+        [routerLink]="link.href"
+        class="link flex-grow"
+        [ngStyle]="{
+          flexBasis: 100 / row.length + '%'
+        }"
+      >
+        <div class="link__image">
+          <img
+            [src]="link.imgSrc || 'assets/images/home.jpg'"
+            [alt]="link.title"
+          />
+        </div>
+        <div class="link__content">
+          <h6
+            class="link__title"
+            [ngClass]="{ '!text-[18px]': !link.description }"
+          >
+            {{ link.title }}
+          </h6>
+          <p *ngIf="link.description" class="link__description">
+            {{ link.description }}
+          </p>
+          <span class="link__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <use
+                xlink:href="assets/icons/common.sprites.svg#link-arrow"
+              ></use>
+            </svg>
+          </span>
+        </div>
+      </a>
     </div>
+  </div>
+
+  <div class="ml-4 p-4 basis-[600px] bg-white drop-shadow-md">
+    <h2 class="text-[1.25rem] font-semibold">
+      Центр событий <span class="ml-2 text-body-3 opacity-50">{{ today }}</span>
+    </h2>
+
+    <div class="mt-12">
+      <div class="uppercase opacity-50 text-right">Водители</div>
+      <div class="mt-2 flex gap-2">
+        <div class="action basis-[100%]">
+          <span class="action__value text-darksuccess">27</span>
+          <span class="action__mean">Сейчас работает</span>
+        </div>
+      </div>
+      <div class="mt-2 flex gap-2">
+        <div class="action basis-[50%]">
+          <span class="action__value text-darkerror">3</span>
+          <span class="action__mean">Нарушений</span>
+        </div>
+        <div class="action basis-[50%]">
+          <span class="action__value text-gray">7.6 ч</span>
+          <span class="action__mean">Ср. время работы</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <div class="uppercase opacity-50 text-right">Поездки и грузы</div>
+      <div class="mt-2 flex gap-2">
+        <div class="action basis-[50%]">
+          <span class="action__value text-gray">12</span>
+          <span class="action__mean">Поездок в работе</span>
+        </div>
+        <div class="action basis-[50%]">
+          <span class="action__value text-darksuccess">112</span>
+          <span class="action__mean">Поездок завершено</span>
+        </div>
+      </div>
+      <div class="mt-2 flex gap-2">
+        <div class="action basis-[50%]">
+          <span class="action__value text-gray">180</span>
+          <span class="action__mean">Грузов в пути</span>
+        </div>
+        <div class="action basis-[50%]">
+          <span class="action__value text-darksuccess">1,248</span>
+          <span class="action__mean">Грузов доставлено</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <div class="uppercase opacity-50 text-right">Транспорт</div>
+      <div class="mt-2 flex gap-2">
+        <div class="action basis-[50%]">
+          <span class="action__value text-darkerror">1</span>
+          <span class="action__mean">Нуждается в ремонте</span>
+        </div>
+        <div class="action basis-[50%]">
+          <span class="action__value text-darksuccess">2</span>
+          <span class="action__mean">Отремонтировано</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

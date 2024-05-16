@@ -4,6 +4,7 @@ import { UserService } from './modules/user/user.service';
 import { ConfirmComponent } from './components/features/confirm/confirm.component';
 import { CommonModule } from '@angular/common';
 import { MainMenuComponent } from './components/layout/main-menu/main-menu.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
   standalone: true,

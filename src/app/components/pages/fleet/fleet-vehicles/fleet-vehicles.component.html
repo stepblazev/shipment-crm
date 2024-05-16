@@ -1,9 +1,12 @@
 <div class="max-h-full flex flex-col items-stretch">
     <div class="flex-grow overflow-scroll">
         <div *ngFor="let vehicle of vehicleService.vehicles" class="p-4 block relative border-b-[1px] border-light">
-            <p class="text-body-1 font-bold">{{ vehicle.make }} {{ vehicle.model}} {{ vehicle.year }}</p>
-            <p class="mt-2 text-body-2 font-semibold">{{ vehicle.type }}</p>
-            <p class="mt-2 text-body-2">{{ vehicle.registration_number }} | {{ vehicle.registration_country }}, {{ vehicle.registration_state }}</p>
+            <a class="text-body-1 font-bold" [routerLink]="'/vehicles/'+vehicle.id">{{ vehicle.make }} {{ vehicle.model}} {{ vehicle.year }}</a>
+            <p class="mt-2 text-body-3 opacity-75 flex gap-1">
+                <svg class="w-4 h-4 stroke-gray opacity-75" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#document"></use>
+                </svg>
+                {{ vehicle.type }} {{ vehicle.registration_number }} | {{ vehicle.registration_country }}, {{ vehicle.registration_state }}</p>
             <div class="mt-4 flex gap-4 justify-between">
                 <button type="button" [routerLink]="'/vehicles/'+vehicle.id" class="btn-alt">Подробнее</button>
                 <button type="button" class="btn">

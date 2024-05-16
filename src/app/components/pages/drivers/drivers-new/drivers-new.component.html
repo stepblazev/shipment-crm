@@ -1,9 +1,85 @@
-<div class="m-4">
-    <p>drivers-new works!</p>
-    <button type="button" routerLink="/drivers" class="mt-4 btn-alt">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <use xlink:href="assets/icons/common.sprites.svg#arrow-back"></use>
-        </svg>
-        Назад к списку
-    </button>
+<div class="new">
+    <div class="new__card">
+        <form class="w-[800px]">
+            <div class="new__section">
+                <h6 class="new__section-title">Общие сведения</h6>
+
+                <div class="mt-4 control">
+                    <label class="control__caption" for="login">Логин</label>
+                    <input type="text" id="login" name="login" class="control__input" [(ngModel)]="login"
+                         placeholder="Не заполнено" />
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="first_name">Имя</label>
+                        <input type="text" id="first_name" name="first_name" class="control__input"
+                            [(ngModel)]="first_name" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="last_name">Фамилия</label>
+                        <input type="text" id="last_name" name="last_name" class="control__input"
+                            [(ngModel)]="last_name" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="birth_date">Дата рождения ДД.ММ.ГГГГ</label>
+                        <input type="text" id="birth_date" name="birth_date" class="control__input"
+                             placeholder="Не заполнено" [(ngModel)]="birth_date" matInput
+                            [matDatepicker]="birth_date_picker" />
+                        <div class="ml-2 mb-[-2px] absolute left-full bottom-0">
+                            <mat-datepicker-toggle matIconSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #birth_date_picker></mat-datepicker>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[50%] control">
+                        <label class="control__caption" for="phone">Телефон</label>
+                        <input type="text" id="phone" name="phone" class="control__input" [(ngModel)]="phone" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[50%] control">
+                        <label class="control__caption" for="email">Эл.почта</label>
+                        <input type="text" id="email" name="email" class="control__input" [(ngModel)]="email" placeholder="Не заполнено" />
+                    </div>
+                </div>
+            </div>
+            <div class="new__section">
+                <h6 class="new__section-title">Сведения о регистрации</h6>
+                <div class="flex gap-4">
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="license_type">Категория прав</label>
+                        <input type="text" id="license_type" name="license_type" class="control__input"
+                            [(ngModel)]="license_type" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="license_number">Номер прав</label>
+                        <input type="text" id="license_number" name="license_number" class="control__input"
+                            [(ngModel)]="license_number" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="license_expire_date">Права истекают</label>
+                        <input type="text" id="license_expire_date" name="license_expire_date" class="control__input"
+                            [(ngModel)]="license_expire_date" [matDatepicker]="license_expire_date_picker" placeholder="Не заполнено" />
+                        <div class="ml-2 mb-[-2px] absolute left-full bottom-0">
+                            <mat-datepicker-toggle matIconSuffix [for]="license_expire_date_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #license_expire_date_picker></mat-datepicker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="new__controls">
+            <button type="button" (click)="create()" class="btn">
+                Добавить
+            </button>
+            <button type="button" routerLink="/drivers" class="btn-alt">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#arrow-back"></use>
+                </svg>
+                Назад к списку
+            </button>
+        </div>
+    </div>
 </div>

@@ -2,11 +2,11 @@
     @apply flex items-center select-none;
     
     &__item:not(:first-child) {
-        @apply ml-3;
+        @apply ml-3 pl-4 relative;
         
         &::before {
-            content: '/';
-            @apply mr-2 text-body-2 text-light;
+            content: '';
+            @apply absolute left-0 top-[50%] translate-y-[-50%] mr-2 w-2 h-2 rounded-full text-body-2 bg-light;
         }
     }
 

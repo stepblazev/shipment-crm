@@ -1,7 +1,7 @@
 <div class="max-h-full flex flex-col items-stretch">
     <div class="flex-grow overflow-scroll">
         <div *ngFor="let driver of driverService.drivers" class="p-4 block relative border-b-[1px] border-light">
-            <p class="text-body-1 font-bold">{{ driver.first_name }} {{ driver.last_name }} ({{ driver.login }})</p>
+            <a class="text-body-1 font-bold" [routerLink]="'/drivers/'+driver.id">{{ driver.first_name }} {{ driver.last_name }} ({{ driver.login }})</a>
             <p class="mt-4 text-body-3 flex items-center gap-2 opacity-75">
                 <svg class="w-4 h-4 stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <use xlink:href="assets/icons/common.sprites.svg#mail"></use>

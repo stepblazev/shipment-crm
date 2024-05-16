@@ -1,34 +1,33 @@
 .driver {
-    @apply p-4;
-  
-    &__title {
-      @apply text-dark transition opacity-50;
-    }
-    
-    &__card {
-      @apply p-8 border-[2px] border-light rounded-lg bg-white transition;
-      
-      &--update {
-          @apply border-primary drop-shadow-lg;
-          
-          .driver__title {
-              @apply text-primary opacity-100;
-          }
+  @apply p-4;
+
+  &__title {
+    @apply text-dark transition opacity-50;
+  }
+
+  &__card {
+    @apply p-8 border-[2px] border-light rounded-lg bg-white transition;
+
+    &--update {
+      @apply border-primary drop-shadow-lg;
+
+      .driver__title {
+        @apply text-primary opacity-100;
       }
-    }
-  
-    &__section {
-      &:not(:first-child) {
-        @apply mt-8;
-      }
-    }
-  
-    &__section-title {
-      @apply mb-4 font-semibold text-[20px] ;
-    }
-  
-    &__controls {
-      @apply mt-12 flex gap-4;
     }
   }
-  
+
+  &__section {
+    &:not(:first-child) {
+      @apply mt-8;
+    }
+  }
+
+  &__section-title {
+    @apply mb-4 font-semibold text-[20px];
+  }
+
+  &__controls {
+    @apply mt-12 flex gap-4;
+  }
+}

@@ -4,58 +4,81 @@
     }">
         <h3 class="driver__title">{{ getFullName() }}</h3>
 
-        <!-- <form class="mt-8 w-[800px]">
+        <form class="mt-8 w-[800px]">
             <div class="driver__section">
                 <h6 class="driver__section-title">Общие сведения</h6>
                 <div class="control">
                     <label class="control__caption" for="id">ID</label>
-                    <input type="text" id="id" class="control__input" [value]="vehicle.id" disabled />
+                    <input type="text" id="id" class="control__input" [value]="driver.id" disabled />
+                </div>
+
+                <div class="mt-4 control">
+                    <label class="control__caption" for="login">Логин</label>
+                    <input type="text" id="login" name="login" class="control__input" [(ngModel)]="login"
+                         placeholder="Не заполнено" [disabled]="!isEdit" />
                 </div>
 
                 <div class="mt-4 flex gap-4">
-                    <div class="basis-[25%] control">
-                        <label class="control__caption" for="make">Марка</label>
-                        <input type="text" id="make" name="make" class="control__input" [(ngModel)]="make"
-                            [disabled]="!isEdit" />
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="first_name">Имя</label>
+                        <input type="text" id="first_name" name="first_name" class="control__input"
+                            [(ngModel)]="first_name" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
-                    <div class="basis-[25%] control">
-                        <label class="control__caption" for="model">Модель</label>
-                        <input type="text" id="model" name="model" class="control__input" [(ngModel)]="model"
-                            [disabled]="!isEdit" />
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="last_name">Фамилия</label>
+                        <input type="text" id="last_name" name="last_name" class="control__input"
+                            [(ngModel)]="last_name" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
-                    <div class="basis-[25%] control">
-                        <label class="control__caption" for="year">Год выпуска</label>
-                        <input type="text" id="year" name="year" class="control__input" [(ngModel)]="year"
-                            [disabled]="!isEdit" />
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="birth_date">Дата рождения ДД.ММ.ГГГГ</label>
+                        <input type="text" id="birth_date" name="birth_date" class="control__input"
+                             placeholder="Не заполнено" [(ngModel)]="birth_date" [disabled]="!isEdit" matInput
+                            [matDatepicker]="birth_date_picker" />
+                        <div class="ml-2 mb-[-2px] absolute left-full bottom-0" [ngClass]="{'hidden': !isEdit}">
+                            <mat-datepicker-toggle matIconSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #birth_date_picker></mat-datepicker>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-4 control">
-                    <label class="control__caption" for="load_capacity">Макс. вместимость</label>
-                    <input type="text" id="load_capacity" name="load_capacity" class="control__input"
-                        [(ngModel)]="load_capacity" placeholder="Не указано" [disabled]="!isEdit" />
+
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[50%] control">
+                        <label class="control__caption" for="phone">Телефон</label>
+                        <input type="text" id="phone" name="phone" class="control__input" [(ngModel)]="phone"
+                            [disabled]="!isEdit" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[50%] control">
+                        <label class="control__caption" for="email">Эл.почта</label>
+                        <input type="text" id="email" name="email" class="control__input" [(ngModel)]="email"
+                            [disabled]="!isEdit" placeholder="Не заполнено" />
+                    </div>
                 </div>
             </div>
             <div class="driver__section">
                 <h6 class="driver__section-title">Сведения о регистрации</h6>
                 <div class="flex gap-4">
                     <div class="basis-[33.333%] control">
-                        <label class="control__caption" for="registration_number">Номер регистрации</label>
-                        <input type="text" id="registration_number" name="registration_number" class="control__input"
-                            [(ngModel)]="registration_number" [disabled]="!isEdit" />
+                        <label class="control__caption" for="license_type">Категория прав</label>
+                        <input type="text" id="license_type" name="license_type" class="control__input"
+                            [(ngModel)]="license_type" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                     <div class="basis-[33.333%] control">
-                        <label class="control__caption" for="registration_country">Страна регистрации</label>
-                        <input type="text" id="registration_country" name="registration_country" class="control__input"
-                            [(ngModel)]="registration_country" [disabled]="!isEdit" />
+                        <label class="control__caption" for="license_number">Номер прав</label>
+                        <input type="text" id="license_number" name="license_number" class="control__input"
+                            [(ngModel)]="license_number" [disabled]="!isEdit" placeholder="Не заполнено" />
                     </div>
                     <div class="basis-[33.333%] control">
-                        <label class="control__caption" for="registration_state">Регион регистрации</label>
-                        <input type="text" id="registration_state" name="registration_state" class="control__input"
-                            [(ngModel)]="registration_state" [disabled]="!isEdit" />
+                        <label class="control__caption" for="license_expire_date">Права истекают</label>
+                        <input type="text" id="license_expire_date" name="license_expire_date" class="control__input"
+                            [disabled]="!isEdit" [(ngModel)]="license_expire_date" [matDatepicker]="license_expire_date_picker" placeholder="Не заполнено" />
+                        <div class="ml-2 mb-[-2px] absolute left-full bottom-0" [ngClass]="{'hidden': !isEdit}">
+                            <mat-datepicker-toggle matIconSuffix [for]="license_expire_date_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #license_expire_date_picker></mat-datepicker>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form> -->
+        </form>
 
         <div *ngIf="!isEdit" class="driver__controls">
             <button type="button" (click)="this.isEdit = true" class="btn">
