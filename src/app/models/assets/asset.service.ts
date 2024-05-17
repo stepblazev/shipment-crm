@@ -35,11 +35,11 @@ export class AssetService {
     this.isLoading = false;
   }
 
-  public update(newDriver: IAsset): void {
+  public update(newAsset: IAsset): void {
     this.isLoading = true;
 
     this.assets = this.assets.map((asset) => {
-      return asset.id == newDriver.id ? newDriver : asset;
+      return asset.id == newAsset.id ? newAsset : asset;
     });
     this.localStorageService.setItem(LOCAL_STORAGE_KEYS.ASSETS, this.assets);
 

@@ -1,3 +1,11 @@
+<div class="p-6 bg-white relative z-20">
+    <div class="flex justify-end">
+        <div class="flex items-center gap-4">
+            <button type="button" routerLink="/assets/new" class="btn">Добавить</button>
+        </div>
+    </div>
+</div>
+
 <app-data-table [data]="assets" [columns]="columns" [allowSelect]="true" [selectedRows]="selectedRows"
     (changeSelect)="selectedRows=$event" (dblClickItem)="toDetail($event)" />
 

@@ -3,15 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import {
-  IOption,
-  SelectComponent,
-} from 'src/app/components/ui/select/select.component';
-import {
-  IVehicle,
-  TVehicleStatus,
-  TVehicleType,
-} from 'src/app/models/vehicles/models/vehicle.interface';
+import { IOption, SelectComponent } from 'src/app/components/ui/select/select.component';
+import { IVehicle, TVehicleStatus, TVehicleType } from 'src/app/models/vehicles/models/vehicle.interface';
 import { statusOptions, typeOptions } from 'src/app/models/vehicles/options';
 import { VehicleService } from 'src/app/models/vehicles/vehicle.service';
 import { ConfirmService } from 'src/app/shared/services/confirm.service';

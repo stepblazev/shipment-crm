@@ -4,6 +4,65 @@
     }">
         <h3 class="asset__title">{{ asset.name }}</h3>
 
+        <form class="mt-8 w-[800px]">
+            <div class="asset__section">
+                <h6 class="asset__section-title">Общие сведения</h6>
+                <div class="control">
+                    <label class="control__caption" for="id">ID</label>
+                    <input type="text" id="id" class="control__input" [value]="asset.id" disabled />
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[50%] control">
+                        <span class="control__caption">Статус</span>
+                        <app-select [options]="statusOptions" [current]="currentStatusOption"
+                            (valueChanged)="this.currentStatusOption=$event" [allowEmpty]="false"
+                            [disabled]="!isEdit" />
+                    </div>
+                    <div class="basis-[50%] control">
+                        <label class="control__caption" for="delivery_date">Дата доставки</label>
+                        <input type="text" id="delivery_date" name="delivery_date" class="control__input" [(ngModel)]="delivery_date" [disabled]="!isEdit" placeholder="Не заполнено" [matDatepicker]="delivery_date_picker" />
+                        <div class="ml-2 mb-[-2px] absolute left-full bottom-0" [ngClass]="{'hidden': !isEdit}">
+                            <mat-datepicker-toggle matIconSuffix [for]="delivery_date_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #delivery_date_picker></mat-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 control">
+                    <label class="control__caption" for="delivery_address">Адрес доставки</label>
+                    <input type="text" id="delivery_address" name="delivery_address" class="control__input"
+                        [(ngModel)]="delivery_address" placeholder="Не заполнено" [disabled]="!isEdit" />
+                </div>
+            </div>
+            <div class="asset__section">
+                <h6 class="asset__section-title">Сведения о грузе</h6>
+                
+                <div class="control">
+                    <label class="control__caption" for="registration_number">Наименование</label>
+                    <input type="text" id="name" name="name" class="control__input"
+                        [(ngModel)]="name" [disabled]="!isEdit" placeholder="Не заполнено" />
+                </div>
+                
+                <div class="mt-4 flex gap-4">
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="weight">Вес, кг</label>
+                        <input type="text" id="weight" name="weight" class="control__input"
+                            [(ngModel)]="weight" [disabled]="!isEdit" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="width">Ширина, см</label>
+                        <input type="text" id="width" name="width" class="control__input"
+                            [(ngModel)]="width" [disabled]="!isEdit" placeholder="Не заполнено" />
+                    </div>
+                    <div class="basis-[33.333%] control">
+                        <label class="control__caption" for="height">Высота, см</label>
+                        <input type="text" id="height" name="height" class="control__input"
+                            [(ngModel)]="height" [disabled]="!isEdit" placeholder="Не заполнено" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        
         <div *ngIf="!isEdit" class="asset__controls">
             <button type="button" (click)="this.isEdit = true" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

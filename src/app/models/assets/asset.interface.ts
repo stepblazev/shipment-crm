@@ -1,10 +1,13 @@
+
+export type TAssetStatus = 'Waiting' | 'In Progress' | 'Completed' | 'Cancelled';
+
 export interface IAsset {
   id: number;
-  status: 'Waiting' | 'In Progress' | 'Completed' | 'Cancelled';
+  status: TAssetStatus;
   delivery_date: Date;
   delivery_address: string;
   name: string;
-  weight: number;
-  width: number;
-  height: number;
+  weight: number | string;
+  width: number | string;
+  height: number | string;
 }
