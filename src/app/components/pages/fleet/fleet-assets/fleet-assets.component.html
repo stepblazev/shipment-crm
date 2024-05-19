@@ -1,1 +1,39 @@
-<p>fleet-assets works!</p>
+<div class="max-h-full flex flex-col items-stretch">
+    <div class="flex-grow overflow-scroll">
+        <div *ngFor="let asset of assetService.assets" class="p-4 block relative border-b-[1px] border-light">
+            <a class="text-body-1 font-bold" [routerLink]="'/assets/'+asset.id">{{ asset.name }} ({{ asset.status }})</a>
+            <p class="mt-4 text-body-3 flex items-center gap-2 opacity-75">
+                <svg class="w-4 h-4 stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#settings"></use>
+                </svg>
+                {{ asset.height }}, см
+            </p>
+            <p class="mt-2 text-body-3 flex items-center gap-2 opacity-75">
+                <svg class="w-4 h-4 stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#settings"></use>
+                </svg>
+                {{ asset.width }}, см
+            </p>
+            <p class="mt-2 text-body-3 flex items-center gap-2 opacity-75">
+                <svg class="w-4 h-4 stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#settings"></use>
+                </svg>
+                {{ asset.weight }}, кг
+            </p>
+            <p class="mt-4 text-body-3 flex items-center gap-2 opacity-75">
+                <svg class="w-4 h-4 stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <use xlink:href="assets/icons/common.sprites.svg#location"></use>
+                </svg>
+                {{ asset.delivery_address }}
+            </p>
+            <div class="mt-4 flex gap-4 justify-between">
+                <button type="button" [routerLink]="'/assets/'+asset.id" class="btn-alt">Подробнее</button>
+                <button type="button" class="btn">
+                    <svg class="!m-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <use xlink:href="assets/icons/common.sprites.svg#location"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
